@@ -542,7 +542,7 @@
                 }
             });
 
-            $horizonSlider.bind("mousedown", function () {
+            function onSliderChose() {
                 if (options.isRightOptionExist) {
                     hideRightOptionPanel();
                 }
@@ -551,21 +551,14 @@
                         popSelectedNode();
                     }
                 }
-                $.inputer.obj.blur();
-
-            });
-
-            $verticalSlider.bind("mousedown", function () {
-                if (options.isRightOptionExist) {
-                    hideRightOptionPanel();
+                if ($.inputer.obj !== null) {
+                    $.inputer.obj.blur();
                 }
-                if (!options.isClickNode) {
-                    while (options.isSelected) {
-                        popSelectedNode();
-                    }
-                }
-                $.inputer.obj.blur();
-            });
+            }
+
+            $horizonSlider.bind("mousedown", onSliderChose);
+
+            $verticalSlider.bind("mousedown", onSliderChose);
 
             $rightOptionPanel.find("a").each(function () {
                 $(this).bind("click", function (e) {
@@ -577,7 +570,7 @@
                                 buildLinker(selectedObjects[0], {
                                     x:e.clientX,
                                     y:e.clientY
-                                },"directLine");
+                                }, "directLine");
                             }
                             break;
                         case "remove":
