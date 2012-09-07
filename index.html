@@ -1,0 +1,197 @@
+<!DOCTYPE HTML>
+<!-DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"->
+<html>
+<head>
+    <title>canvas test</title>
+    <link type="text/css" rel="stylesheet" href="css/global.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</head>
+<body oncontextmenu="return false">
+
+<div class="back"></div>
+<div class="blackback"></div>
+<table>
+    <tr>
+        <td>
+            <div id="old_position">
+                <div>
+                    <div id="vertical_scroll">
+                        <div class="slider"></div>
+                    </div>
+                    <div id="horizon_scroll">
+                        <div class="slider"></div>
+                    </div>
+                    <canvas id="cav" width="550px" height="600px" class="border backgroundLiner">sorry!</canvas>
+                </div>
+                <div id="opt">
+                    <ul>
+                        <li><a id="add">新增节点</a></li>
+                        <li><a id="layout">自动布局</a></li>
+                        <li><a id="redo">重做</a></li>
+                        <li><a id="undo">撤销</a></li>
+                        <li><a id="link">连接</a></li>
+                        <li>
+                            <a id="insert">插入<span>◣</span></a>
+                            <ul>
+                                <li><a>多选多</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a id="replace">替换<span>◣</span></a>
+                            <ul>
+                                <li><a>多选一</a></li>
+                            </ul>
+                        </li>
+                        <li><a id="rename">重命名</a></li>
+                        <li>
+                            <a id="remove">删除<span>◣</span></a>
+                            <ul>
+                                <li><a>自身节点</a></li>
+                                <li><a>前驱线段</a></li>
+                                <li><a>后继线段</a></li>
+                            </ul>
+                        </li>
+                        <li><a id="property">属性</a></li>
+                        <li><a id="fullscreen">画布太小？</a></li>
+                    </ul>
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+<div style="display: none">
+    <table id="ctx" onselectstart="return false">
+        <tr>
+            <td>
+                <div class="toolbar">
+                    <ul>
+                        <li>
+                            <a>文件</a>
+                            <ul>
+                                <li><a class="save">云保存</a></li>
+                                <li><a class="reload">重新加载</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a>图像</a>
+                            <ul>
+                                <li>
+                                    <a>画布大小<span>◣</span></a>
+                                    <ul>
+                                        <li><a class="resize">500*600</a></li>
+                                        <li><a class="resize">800*600</a></li>
+                                        <li><a class="resize">1200*900</a></li>
+                                        <li><a class="customResize">自定义</a></li>
+                                    </ul>
+                                </li>
+                                <li><a class="showBackground">显示网格<span><input id="showLiner" type="checkbox"
+                                                                               checked="checked"></span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a>操作</a>
+                            <ul>
+                                <li><a class="undo">撤销</a></li>
+                                <li><a class="redo">重做</a></li>
+                                <li><a class="autoLayout">自动布局</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a>显示</a>
+                            <ul>
+                                <li>
+                                    <a>风格<span>◣</span></a>
+                                    <ul>
+                                        <li><a>灰度</a></li>
+                                        <li><a>16位彩</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>连接线<span>◣</span></a>
+                                    <ul>
+                                        <li><a>直角线连线</a></li>
+                                        <li><a>直线连线</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a>窗口</a>
+                            <ul>
+                                <li><a class="showHistory">历史<span><input type="checkbox"></span></a></li>
+                                <li><a class="showPropery">属性<span><input type="checkbox"></span></a></li>
+                                <li><a class="showNavigation">导航器<span><input type="checkbox"></span></a></li>
+                                <li><a class="showNodesPanel">选择面板<span><input type="checkbox"></span></a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a>帮助</a>
+                            <ul>
+                                <li><a class="showHelper">操作指南</a></li>
+                                <li><a class="contact">联系我们</a></li>
+                                <li><a class="about">关于Joo</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+    <table id="prop">
+        <tr>
+            <td>过程名称：</td>
+            <td><input type="text"></td>
+        </tr>
+        <tr>
+            <td>过程输入([名称+类型])：</td>
+            <td><input type="text"></td>
+        </tr>
+        <tr>
+            <td>过程输出([名称+类型])：</td>
+            <td><input type="text"></td>
+        </tr>
+        <tr>
+            <td>过程前置条件([类型+谓词+参数1+参数2])：</td>
+            <td><input type="text"></td>
+        </tr>
+        <tr>
+            <td>过程后置条件([类型+谓词+参数1+参数2])：</td>
+            <td><input type="text"></td>
+        </tr>
+        <tr>
+            <td>过程期望：</td>
+            <td><input type="text"></td>
+        </tr>
+        <tr>
+            <td>过程本地参数：</td>
+            <td><input type="text"></td>
+        </tr>
+        <tr>
+            <td>过程绑定：</td>
+            <td><input type="text"></td>
+        </tr>
+    </table>
+</div>
+<script src="js/lib/jquery-1.8.1.js"></script>
+<script src="js/lib/jquery.easing.1.3.js"></script>
+<script src="js/lib/ocanvas-2.2.1.min.js"></script>
+
+<script src="js/project/animation.js"></script>
+<script src="js/project/dimensions.js"></script>
+<script src="js/project/inputer.js"></script>
+<script src="js/project/drag.js"></script>
+<script src="js/project/win.js"></script>
+
+<script src="js/project/dataBase.js"></script>
+<script src="js/project/elems.js"></script>
+<script src="js/project/ready.js"></script>
+
+<script src="js/project/userInterface.js"></script>
+<script src="js/project/menu.js"></script>
+
+</body>
+</html>
