@@ -278,8 +278,8 @@
                 $rightOptionPanel.fadeOut(100);
             }
 
-            function buildLinker(start, end) {
-                linker = canvas.display.linkLine({
+            function buildLinker(start, end, type) {
+                linker = canvas.display[type]({
                     start:start,
                     end:end
                 });
@@ -577,7 +577,7 @@
                                 buildLinker(selectedObjects[0], {
                                     x:e.clientX,
                                     y:e.clientY
-                                });
+                                },"directLine");
                             }
                             break;
                         case "remove":
@@ -686,7 +686,7 @@
                             .children()
                             .each(function () {
                                 if (this.export !== null) {
-                                    var linker = canvas.display["linkLine"]({
+                                    var linker = canvas.display["directLine"]({
                                         start:_this.export,
                                         end:this.export
                                     });

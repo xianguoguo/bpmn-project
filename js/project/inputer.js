@@ -42,7 +42,7 @@
             },
             show:function () {
                 if (!!this.obj) {
-                    this.obj.fadeIn(200).focus();
+                    this.obj.fadeIn(200).focus().select();
                 }
             },
             hide:function () {

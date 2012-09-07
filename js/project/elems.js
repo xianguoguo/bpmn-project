@@ -280,7 +280,7 @@
                 ctx.save();
                 ctx.beginPath();
                 ctx.lineWidth = 1;
-                ctx.moveTo(points[0].x, points[0].y);
+                ctx.moveTo(round(points[0].x), round(points[0].y));
                 for (i = 1; i < points.length; i++) {
                     ctx.lineTo(round(points[i].x), round(points[i].y));
                 }
@@ -288,7 +288,7 @@
                 ctx.closePath();
                 ctx.restore();
 
-                tmp = round(points[3].y > points[2].y ? -10 : 10);
+                tmp = points[3].y > points[2].y ? -10 : 10;
                 ctx.save();
                 ctx.beginPath();
                 ctx.lineWidth = 1;
@@ -307,6 +307,91 @@
     }
 
     oCanvas.registerDisplayObject("linkLine", linkLine, "init");
+
+    function directLine(settings, core) {
+        return oCanvas.extend({
+            core:core,
+            shapeType:"ractangular",
+            init:function () {
+                this.add();
+            },
+            draw:function () {
+                var tmp ,
+                    len,
+                    dx,
+                    dy,
+                    w,
+                    director,
+                    points,
+                    ctx = this.core.canvas,
+                    s = this.start,
+                    e = this.end,
+                    sh2 = s.height / 2 || s.radius || 0,
+                    eh2 = e.height / 2 || e.radius || 0;
+                if (s.type === "gateway") {
+                    sh2 *= Math.sqrt(2);
+                }
+                if (e.type === "gateway") {
+                    eh2 *= Math.sqrt(2);
+                }
+                if (s.y > e.y) {
+                    points = [
+                        {
+                            x:s.x,
+                            y:s.y - sh2
+                        },
+                        {
+                            x:e.x,
+                            y:e.y + eh2
+                        }
+                    ];
+                } else {
+                    points = [
+                        {
+                            x:s.x,
+                            y:s.y + sh2
+                        },
+                        {
+                            x:e.x,
+                            y:e.y - eh2
+                        }
+                    ];
+                }
+
+                //通过角度旋转的方式绘制带箭头的图形
+                dx = points[1].x - points[0].x;
+                dy = points[1].y - points[0].y;
+                len = Math.sqrt(dx * dx + dy * dy);
+                tmp = Math.asin(dy / len);
+                director = dx > 0 ? tmp : - Math.PI - tmp;
+                len = Math.max(len, 12);
+                w = 1;
+
+                ctx.save();
+                ctx.beginPath();
+                ctx.lineWidth = 1;
+                ctx.translate(round(points[0].x), round(points[0].y));
+                ctx.rotate(director);
+
+                ctx.moveTo(0, w);
+                ctx.lineTo(0, -w);
+                ctx.lineTo(len - 12, -w);
+                ctx.lineTo(len - 12, -3);
+                ctx.lineTo(len, 0);
+                ctx.lineTo(len - 12, 3);
+                ctx.lineTo(len - 12, w);
+                ctx.lineTo(0, w);
+
+                ctx.fillStyle = "rgba(0,0,0,0.2)"
+                ctx.fill();
+                ctx.stroke();
+                ctx.closePath();
+                ctx.restore();
+            }
+        }, settings);
+    }
+
+    oCanvas.registerDisplayObject("directLine", directLine, "init");
 
     oCanvas.registerModule("elems", function () {
         return {
