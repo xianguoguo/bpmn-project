@@ -2,7 +2,7 @@
 
 ## 项目描述：
 
-该项目是基于html5相关的绘图标签canvas来开发的一个小型项目
+该项目是基于[html5](http://zh.wikipedia.org/zh-cn/HTML_5)相关的绘图标签[canvas](https://developer.mozilla.org/zh-TW/docs/HTML/Canvas)来开发的一个小型项目。
 
 ## 项目引用框架主要是：
 
