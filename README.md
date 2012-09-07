@@ -5,7 +5,7 @@
 2.[jQuery](http://jquery.com/)负责dom文档操作以及相关事件添加。
 
 #项目用途：
-该项目源于[bpmn](http://en.wikipedia.org/wiki/BPMN)建模工具的一个子集，是一个小型的bpmn的网页插件工具（需要浏览器html5的支持），目的是在ORGPS中为用户提供云服务的可视化操作。
+该项目源于[bpmn](http://en.wikipedia.org/wiki/BPMN)建模工具的一个子集，是一个小型的bpmn的网页插件工具（需要浏览器html5的支持），目的是在为用户提供相关云服务的可视化操作。
 
 #项目引入方法：
 请参见index.html内部代码。
