@@ -28,13 +28,13 @@
             yReverse = setting.yReverse || false;
             xMode = setting.xMode || false;
             yMode = setting.yMode || false;
-            maxX = setting.maxX;
-            minX = setting.minX;
-            minY = setting.minY;
-            maxY = setting.maxY;
-            onDragStart = setting.onDragStart;
-            onDrag = setting.onDrag;
-            onDragEnd = setting.onDragEnd;
+            maxX = setting.maxX || undefined;
+            minX = setting.minX || undefined;
+            minY = setting.minY || undefined;
+            maxY = setting.maxY || undefined;
+            onDragStart = setting.onDragStart || null;
+            onDrag = setting.onDrag || null;
+            onDragEnd = setting.onDragEnd || null;
         }
         function start(e) {
             sx = parseFloat($obj.css("left")) || ox || 0;

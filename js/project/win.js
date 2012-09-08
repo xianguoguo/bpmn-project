@@ -145,7 +145,14 @@
             };
             $parts[1][1].append($context);
             $btns = createButtons($parts[0][1]);
-            $parts[0][1].drag($main).dblclick(toggleMaxAndRestore);
+            //为窗口添加拖拽功能
+            $parts[0][1].drag($main, {
+                onDragEnd:function () {
+                    if (parseInt(this.css("top"), 10) < 0) {
+                        this.animate({"top":0}, 500, "easeOutBack");
+                    }
+                }
+            }).dblclick(toggleMaxAndRestore);
             $btns[1].click(toggleMaxAndRestore);
             return $parts;
         }
@@ -336,7 +343,7 @@
                                         $parent.css({cursor:direction + "-resize"});
                                     },
                                     onDrag:function (sx, sy, dx, dy) {
-                                        if(old !== null){
+                                        if (old !== null) {
                                             yMode || adjustWidth($main, $parts, old.width + ($root === null ? dx : -dx));
                                             xMode || adjustHeight($main, $parts, old.height + ($root === null ? dy : -dy));
                                         }

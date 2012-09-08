@@ -382,9 +382,9 @@
                 ctx.lineTo(len - 12, w);
                 ctx.lineTo(0, w);
 
-                ctx.fillStyle = "rgba(0,0,0,0.2)"
+                ctx.fillStyle = "rgba(0,0,0,0.5)"
                 ctx.fill();
-                ctx.stroke();
+                //ctx.stroke();
                 ctx.closePath();
                 ctx.restore();
             }

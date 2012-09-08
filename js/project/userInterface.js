@@ -201,6 +201,7 @@
                         $verticalScroll.fadeOut(200);
                     }
                 });
+
             function setCanvasWidth(w) {
                 canvas.width = w;
                 var k = w / options.mapWidth;
