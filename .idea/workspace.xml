@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="378d7e5b-0915-457d-8a69-d11f792615cc" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/project/drag.js" afterPath="$PROJECT_DIR$/js/project/drag.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/project/elems.js" afterPath="$PROJECT_DIR$/js/project/elems.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/project/dimensions.js" afterPath="$PROJECT_DIR$/js/project/dimensions.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/project/menu.js" afterPath="$PROJECT_DIR$/js/project/menu.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/project/userInterface.js" afterPath="$PROJECT_DIR$/js/project/userInterface.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/project/win.js" afterPath="$PROJECT_DIR$/js/project/win.js" />
     </list>
     <ignored path="Joo-canvas-1.4.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,7 +30,7 @@
       <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="183" column="48" selection-start="7198" selection-end="7198" vertical-scroll-proportion="0.30402932">
+            <state line="60" column="8" selection-start="2332" selection-end="2332" vertical-scroll-proportion="0.11881188">
               <folding />
             </state>
           </provider>
@@ -50,7 +48,7 @@
       <file leaf-file-name="elems.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/project/elems.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="384" column="47" selection-start="12996" selection-end="12996" vertical-scroll-proportion="0.0">
+            <state line="383" column="0" selection-start="12948" selection-end="12948" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -59,7 +57,25 @@
       <file leaf-file-name="userInterface.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/project/userInterface.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="341" column="39" selection-start="14718" selection-end="14718" vertical-scroll-proportion="0.0">
+            <state line="712" column="43" selection-start="31069" selection-end="31069" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="menu.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/project/menu.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="29" selection-start="352" selection-end="352" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dimensions.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/project/dimensions.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="21" column="35" selection-start="816" selection-end="816" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -68,7 +84,7 @@
       <file leaf-file-name="win.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/project/win.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="146" column="48" selection-start="4291" selection-end="4291" vertical-scroll-proportion="0.0">
+            <state line="16" column="23" selection-start="497" selection-end="497" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -77,7 +93,7 @@
       <file leaf-file-name="drag.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/project/drag.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="89" column="58" selection-start="3110" selection-end="3110" vertical-scroll-proportion="0.0">
+            <state line="78" column="25" selection-start="2612" selection-end="2612" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -98,11 +114,13 @@
       <list>
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/js/project/inputer.js" />
-        <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/js/project/userInterface.js" />
         <option value="$PROJECT_DIR$/js/project/drag.js" />
         <option value="$PROJECT_DIR$/js/project/win.js" />
         <option value="$PROJECT_DIR$/js/project/elems.js" />
+        <option value="$PROJECT_DIR$/js/project/dimensions.js" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/js/project/userInterface.js" />
+        <option value="$PROJECT_DIR$/js/project/menu.js" />
       </list>
     </option>
   </component>
@@ -247,7 +265,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18120806" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18120806" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -338,11 +356,6 @@
         <state line="6" column="13" selection-start="186" selection-end="186" vertical-scroll-proportion="0.21466905" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/project/menu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.3986014" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/lib/ocanvas-2.2.0.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="0" selection-start="242" selection-end="242" vertical-scroll-proportion="0.17889088">
@@ -354,21 +367,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/project/drag.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="89" column="58" selection-start="3110" selection-end="3110" vertical-scroll-proportion="0.0">
+        <state line="78" column="25" selection-start="2612" selection-end="2612" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/project/win.js">
+    <entry file="file://$PROJECT_DIR$/js/project/elems.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="146" column="48" selection-start="4291" selection-end="4291" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/project/userInterface.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="341" column="39" selection-start="14718" selection-end="14718" vertical-scroll-proportion="0.0">
+        <state line="383" column="0" selection-start="12948" selection-end="12948" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -378,16 +384,37 @@
         <state line="28" column="50" selection-start="893" selection-end="893" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/project/elems.js">
+    <entry file="file://$PROJECT_DIR$/js/project/dimensions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="384" column="47" selection-start="12996" selection-end="12996" vertical-scroll-proportion="0.0">
+        <state line="21" column="35" selection-start="816" selection-end="816" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/project/win.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="23" selection-start="497" selection-end="497" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/project/userInterface.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="712" column="43" selection-start="31069" selection-end="31069" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/project/menu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="29" selection-start="352" selection-end="352" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="183" column="48" selection-start="7198" selection-end="7198" vertical-scroll-proportion="0.30402932">
+        <state line="60" column="8" selection-start="2332" selection-end="2332" vertical-scroll-proportion="0.11881188">
           <folding />
         </state>
       </provider>

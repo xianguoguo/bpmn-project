@@ -470,6 +470,7 @@
                     centerThePropertyWindow();
                 }
             };
+
             canvas.bind("mousedown", function (e) {
                 if (e.button === 0) {
                     switch (options.status) {
@@ -500,6 +501,7 @@
                     }
                 }
             });
+
             canvas.bind("click", function (e) {
                 if (e.button === 0) {
                     if (options.isRightOptionExist) {
@@ -524,6 +526,7 @@
                 }
                 options.isClickNode = false;
             });
+
             canvas.bind("mousemove", function (e) {
                 switch (options.status) {
                     case "linking":
@@ -658,6 +661,10 @@
                 });
             });
 
+            function resetCanvas() {
+                canvas.reset();
+            }
+
             function onImagesLoaded() {
                 canvas.dataBase.json = data;
                 canvas.dataBase
@@ -688,8 +695,8 @@
                                 }
                             }).all();
                     });
-                setCanvasHeight(options.canvasHeight);
-                setCanvasWidth(options.canvasWidth);
+                setCanvasHeight(parseInt(canvas.height, 10));
+                setCanvasWidth(parseInt(canvas.width, 10));
             }
 
             canvas.ready.loadImages(onImagesLoaded);
@@ -701,7 +708,9 @@
                     centerTheMajorWindow:centerTheMajorWindow,
                     centerThePropertyWindow:centerThePropertyWindow,
                     $majorWindow:$majorWindow,
-                    autoLayout:autoLayout
+                    autoLayout:autoLayout,
+                    reload:onImagesLoaded,
+                    resetCanvas:resetCanvas
                 }
             });
 

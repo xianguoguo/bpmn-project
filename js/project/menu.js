@@ -2,8 +2,17 @@
     var $canvas = $("#cav");
 
     $(".showBackground").bind("click", function () {
-        $(this).find("input:checkbox").toggleAttr("checked", "checked");
+        $(this).children("span").toggleText("*");
         $canvas.toggleClass("backgroundLiner");
+    });
+
+    $(".save").bind("click", function () {
+
+    });
+
+    $(".reload").bind("click", function () {
+        $.bpmn.resetCanvas();
+        $.bpmn.reload();
     });
 
     $(".resize").bind("click", function () {

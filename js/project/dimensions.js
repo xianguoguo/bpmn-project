@@ -19,15 +19,12 @@
         }
     });
     $.fn.extend({
-        toggleAttr:function (name, value) {
-            var $this = $(this),
-                prop = {},
-                comp = $this.attr(name);
-            prop[name] = value;
-            if (comp === undefined) {
-                $this.attr(prop);
+        toggleText:function (str) {
+            var $this = $(this);
+            if ($this.text() === str) {
+                $this.text("");
             } else {
-                $this.removeAttr(name);
+                $this.text(str);
             }
         }
     });
