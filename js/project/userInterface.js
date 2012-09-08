@@ -86,6 +86,13 @@
                 get isPorpertyWindowShow() {
                     return /block/i.test($propertyWindow.css("display"));
                 },
+                get lineType() {
+                    var flag = $(".useLinkLine").children("span").text();
+                    if (flag === "√") {
+                        return "linkLine";
+                    }
+                    return "directLine";
+                },
                 offsetX:0,
                 offsetY:0,
                 //Just to be the cache of old fullscreen's canvas dimention.
@@ -101,7 +108,7 @@
             $verticalScroll = $("#vertical_scroll");
             $majorWindow = $("#ctx")
                 .windows(".back", {
-                    "minWidth":410
+                    "minWidth":420
                 }).resize(function (w, h) {
                     !w || setCanvasWidth(w);
                     !h || setCanvasHeight(h - 28);
@@ -284,6 +291,7 @@
                     start:start,
                     end:end
                 });
+                return linker;
             }
 
             function endLink() {
@@ -513,7 +521,18 @@
                                 linker.end = selectedObjects[1];
                                 linker.start.export.next.push(linker.end.export.key);
                                 linker.end.export.prev.push(linker.start.export.key);
-                                linkers["_" + linker.start.export.key + "_" + linker.end.export.key + "_"] = linker;
+                                linkers["_" + linker.start.export.key + "_" + linker.end.export.key + "_"] = function () {
+                                    if (linker.type === "linkLine") {
+                                        return {
+                                            "linkLine":linker,
+                                            "directLine":buildLinker(linker.start, linker.end, "directLine")
+                                        };
+                                    }
+                                    return {
+                                        "directLine":linker,
+                                        "linkLine":buildLinker(linker.start, linker.end, "linkLine")
+                                    };
+                                }();
                                 linker.redraw();
                             } else {
                                 linker.remove();
@@ -574,7 +593,7 @@
                                 buildLinker(selectedObjects[0], {
                                     x:e.clientX,
                                     y:e.clientY
-                                }, "directLine");
+                                }, options.lineType).add();
                             }
                             break;
                         case "remove":
@@ -661,8 +680,24 @@
                 });
             });
 
+            //重新设置canvas
             function resetCanvas() {
                 canvas.reset();
+            }
+
+            function showLines() {
+                var key;
+                if (options.lineType === "linkLine") {
+                    for (key in linkers) {
+                        linkers[key]["linkLine"].add();
+                        linkers[key]["directLine"].remove();
+                    }
+                } else {
+                    for (key in linkers) {
+                        linkers[key]["linkLine"].remove();
+                        linkers[key]["directLine"].add();
+                    }
+                }
             }
 
             function onImagesLoaded() {
@@ -687,14 +722,23 @@
                             .children()
                             .each(function () {
                                 if (this.export !== null) {
-                                    var linker = canvas.display["directLine"]({
-                                        start:_this.export,
-                                        end:this.export
-                                    });
-                                    linkers["_" + _this.key + "_" + this.key + "_"] = linker;
+                                    /*
+                                     var linker = canvas.display["directLine"]({
+                                     start:_this.export,
+                                     end:this.export
+                                     });
+                                     */
+                                    linkers["_" + _this.key + "_" + this.key + "_"] = {
+                                        "directLine":buildLinker(_this.export, this.export, "directLine"),
+                                        "linkLine":buildLinker(_this.export, this.export, "linkLine")
+                                    };
                                 }
                             }).all();
                     });
+
+                //获取文档默认的连接线的type值，显示对应的连接线。
+                showLines();
+
                 setCanvasHeight(parseInt(canvas.height, 10));
                 setCanvasWidth(parseInt(canvas.width, 10));
             }
@@ -710,7 +754,12 @@
                     $majorWindow:$majorWindow,
                     autoLayout:autoLayout,
                     reload:onImagesLoaded,
-                    resetCanvas:resetCanvas
+                    resetCanvas:resetCanvas,
+                    showLines:showLines,
+                    canvas:canvas,
+                    redraw:function () {
+                        canvas.redraw();
+                    }
                 }
             });
 

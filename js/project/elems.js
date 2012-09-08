@@ -221,7 +221,7 @@
             core:core,
             shapeType:"ractangular",
             init:function () {
-                this.add();
+                //this.add();
             },
             draw:function () {
                 var tmp ,
@@ -313,7 +313,7 @@
             core:core,
             shapeType:"ractangular",
             init:function () {
-                this.add();
+                //this.add();
             },
             draw:function () {
                 var tmp ,
