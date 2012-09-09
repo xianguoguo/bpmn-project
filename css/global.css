@@ -42,7 +42,8 @@ body {
 #old_position {
     width: 550px;
     height: 600px;
-    border: 1px solid #000000;
+    border: 1px solid #00aaff;
+    margin: 20px;
 }
 
 #horizon_scroll {
@@ -51,7 +52,6 @@ body {
     position: absolute;
     background-color: #dce9f4;
     display: none;
-    opacity: 0.8;
 }
 
 #vertical_scroll {
@@ -60,7 +60,6 @@ body {
     position: absolute;
     background-color: #dce9f4;
     display: none;
-    opacity: 0.8;
 }
 
 #horizon_scroll .slider {

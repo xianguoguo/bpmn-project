@@ -32,7 +32,7 @@
                             "height":this.options.heigth,
                             "position":"absolute",
                             "display":"none",
-                            "border":"0px solid #000",
+                            "border":"1px solid #ff0",
                             "background-color":"transparent",
                             "textAlign":"center"
                         });

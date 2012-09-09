@@ -38,7 +38,8 @@
                 specialNodeOptions = "link insert replace rename remove property",
                 specialStageOptions = "fullscreen add layout redo undo",
                 linker = null,
-                linkers = {};
+                linkers = {},
+                timer = new Timer();
             options = {
                 status:"default",
                 get screenDimensions() {
@@ -100,6 +101,9 @@
                 canvasWidth:550,
                 isClickNode:false
             };
+
+            timer.init();
+
             canvas = oCanvas.create({canvas:"#cav"});
             $rightOptionPanel = $("#opt");
             $background = $(".back");
@@ -110,14 +114,20 @@
                 .windows(".back", {
                     "minWidth":420
                 }).resize(function (w, h) {
+
                     !w || setCanvasWidth(w);
                     !h || setCanvasHeight(h - 28);
+
                 }).close(function () {
+
                     quitFullScreen();
                     $("#fullscreen").text("进入全屏");
+
                 }).minimize(function () {
+
                     quitFullScreen();
                     $("#fullscreen").text("进入全屏");
+
                 }).css({"display":"none"});
             $propertyWindow = $("#prop")
                 .windows("body")
@@ -139,11 +149,7 @@
                     $blackBackground.fadeOut(500);
                 });
             $horizonSlider = $horizonScroll
-                .bind("mouseleave",function () {
-                    if (options.isScrollShow === true && options.status !== "scrolling") {
-                        $(this).fadeOut(200);
-                    }
-                }).children(".slider")
+                .children(".slider")
                 .drag(null, {
                     xMode:true,
                     onDragStart:function () {
@@ -168,17 +174,15 @@
                         canvas.dataBase.all().each(function () {
                             this.export.x = this.export.sx - (sliderX - sx) * k;
                         });
+
                         canvas.redraw();
+
                         options.status = "default";
                         $horizonScroll.fadeOut(200);
                     }
                 });
             $verticalSlider = $verticalScroll
-                .bind("mouseleave",function () {
-                    if (options.isScrollShow === true && options.status !== "scrolling") {
-                        $(this).fadeOut(200);
-                    }
-                }).children(".slider")
+                .children(".slider")
                 .drag(null, {
                     yMode:true,
                     onDragStart:function () {
@@ -203,13 +207,15 @@
                         canvas.dataBase.all().each(function () {
                             this.export.y = this.export.sy - (sliderY - sy) * k;
                         });
+
                         canvas.redraw();
+
                         options.status = "default";
                         $verticalScroll.fadeOut(200);
                     }
                 });
 
-            function setCanvasWidth(w) {
+            function setCanvasWidth(w, force) {
                 canvas.width = w;
                 var k = w / options.mapWidth;
                 var theSliderWidth = w * k;
@@ -221,9 +227,13 @@
                         "left":options.offsetX * k
                     });
                 $horizonSlider.setHorizon(0, w - theSliderWidth);
+
+                $verticalScroll.css({
+                    "left":!options.isFullScreen || force ? (w - 13 + $("#cav").parent("div").offset().left) : w - 9
+                });
             }
 
-            function setCanvasHeight(h) {
+            function setCanvasHeight(h, force) {
                 canvas.height = h;
                 var k = h / options.mapHeight;
                 var theSliderHeight = h * k;
@@ -235,6 +245,10 @@
                         "top":options.offsetY * k
                     });
                 $verticalSlider.setVertical(0, h - theSliderHeight);
+
+                $horizonScroll.css({
+                    "top":!options.isFullScreen || force ? h - 13 + $("#cav").parent("div").offset().top : h + 44
+                });
             }
 
             function addSelectedNode(obj) {
@@ -267,16 +281,20 @@
             }
 
             function showRightOptionPanel(x, y) {
+                var left = options.isFullScreen ? x + 6 : x,
+                    top = options.isFullScreen ? y + 59 : y;
+                left += $("body").scrollLeft();
+                top += $("body").scrollTop();
                 if (!options.isRightOptionExist) {
                     $rightOptionPanel.css({
-                        "left":options.isFullScreen ? x + 6 : x,
-                        "top":options.isFullScreen ? y + 59 : y
+                        "left":left,
+                        "top":top
                     }).fadeIn(100);
                 } else {
                     $rightOptionPanel.fadeOut(100, function () {
                         $(this).css({
-                            "left":options.isFullScreen ? x + 6 : x,
-                            "top":options.isFullScreen ? y + 59 : y
+                            "left":left,
+                            "top":top
                         }).fadeIn(100);
                     });
                 }
@@ -358,7 +376,7 @@
             }
 
             function showPropertyWindow() {
-                $blackBackground.fadeTo(500, 0.8, function () {
+                $blackBackground.fadeTo(500, 0.5, function () {
                     $("body").addClass("hidescroll");
                     $propertyWindow.fadeIn(500, function () {
                         centerThePropertyWindow();
@@ -461,12 +479,16 @@
 
             function quitFullScreen() {
                 $("body").removeClass("hidescroll");
-                $background.fadeOut(500);
+
                 options.canvasWidth = canvas.width;
                 options.canvasHeight = canvas.height + 28;
-                setCanvasHeight(600);
-                setCanvasWidth(550);
+
                 $("#old_position").append($("#cav").parent("div")).append($rightOptionPanel);
+
+                setCanvasHeight(600,true);
+                setCanvasWidth(550,true);
+
+                $background.fadeOut(500);
             }
 
             window.onresize = function () {
@@ -497,15 +519,16 @@
                     }
                 }
                 if (e.button === 2) {
+                    var offset = $("#cav").offset();
                     if (options.isClickNode) {
                         setOptionsForNode();
                     } else {
                         setOptionsForStage();
                     }
                     if (options.isFullScreen) {
-                        showRightOptionPanel(e.x, e.y);
+                        showRightOptionPanel(e.x + 1, e.y + 1);
                     } else {
-                        showRightOptionPanel(e.clientX + 1, e.clientY + 1);
+                        showRightOptionPanel(e.x + offset.left + 1, e.y + offset.top + 1);
                     }
                 }
             });
@@ -555,14 +578,24 @@
                         }
                         break;
                 }
-                if (!options.isScrollShow) {
-                    if (e.y < 10 && options.status === "default") {
-                        $horizonScroll.fadeIn(200);
+
+
+                if (!options.isScrollShow && options.status === "default") {
+                    if (e.y >= canvas.height - 10 && e.y <= canvas.height) {
+                        $horizonScroll.fadeTo(600, 0.7);
                     }
-                    if (e.x < 10 && options.status === "default") {
-                        $verticalScroll.fadeIn(200);
+                    if (e.x >= canvas.width - 10 && e.x <= canvas.width) {
+                        $verticalScroll.fadeTo(600, 0.7);
+                    }
+                } else if (options.status !== "scrolling") {
+                    if (e.y < canvas.height - 10 || e.y > canvas.height) {
+                        $horizonScroll.fadeOut(200);
+                    }
+                    if (e.x < canvas.width - 10 || e.x > canvas.width) {
+                        $verticalScroll.fadeOut(200);
                     }
                 }
+
             });
 
             function onSliderChose() {
@@ -627,10 +660,11 @@
                             if (options.isSelected && !options.isGrouped) {
                                 var obj = selectedObjects[0];
                                 if (!!obj.export.type.match(/Subprocess$/g)) {
-                                    var width = Math.max(obj.text.width, 50),
+                                    var offset,
+                                        width = Math.max(obj.text.width, 50),
                                         height = obj.text.height,
-                                        left = obj.x - width / 2 + 2,
-                                        top = obj.y - height / 2 + 2,
+                                        left = obj.x - width / 2,
+                                        top = obj.y - height / 2,
                                         prevText = obj.text.text.length > 0 ? obj.text.text : " ";
 
                                     obj.text.text = "";
@@ -640,6 +674,9 @@
                                     if (options.isFullScreen) {
                                         $.inputer.init($("#cav").parent("div"), left + 6, top + 55, width, height, prevText);
                                     } else {
+                                        offset = $("#cav").offset();
+                                        left += offset.left - 1;
+                                        top += offset.top - 1;
                                         $.inputer.init($("#cav").parent("div"), left, top, width, height, prevText);
                                     }
                                     $.inputer.change(function () {
@@ -701,6 +738,7 @@
             }
 
             function onImagesLoaded() {
+                linkers = {};
                 canvas.dataBase.json = data;
                 canvas.dataBase
                     .layout("0")
@@ -722,12 +760,6 @@
                             .children()
                             .each(function () {
                                 if (this.export !== null) {
-                                    /*
-                                     var linker = canvas.display["directLine"]({
-                                     start:_this.export,
-                                     end:this.export
-                                     });
-                                     */
                                     linkers["_" + _this.key + "_" + this.key + "_"] = {
                                         "directLine":buildLinker(_this.export, this.export, "directLine"),
                                         "linkLine":buildLinker(_this.export, this.export, "linkLine")

@@ -72,34 +72,37 @@
         if (flag !== "√") {
             $(this).children("span").text("√");
 
-            for (var i in images) {
-                var ctx = images[i].getContext("2d"),
-                    imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height),
-                    pixel = imgData.data;
+            try {
+                for (var i in images) {
+                    var ctx = images[i].getContext("2d"),
+                        imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height),
+                        pixel = imgData.data;
 
-                if (parseInt(i, 10) > 0 && parseInt(i, 10) < 106) {
+                    if (parseInt(i, 10) > 0 && parseInt(i, 10) < 106) {
 
-                    //do nothing
-                } else {
-                    for (var j = 0; j < pixel.length; j += 4) {
-                        var avg = (pixel[j] + pixel[j + 1] + pixel[j + 2]) / 3;
-                        avg = ~~avg;
+                        //do nothing
+                    } else {
+                        for (var j = 0; j < pixel.length; j += 4) {
+                            var avg = (pixel[j] + pixel[j + 1] + pixel[j + 2]) / 3;
+                            avg = ~~avg;
 
-                        pixel[j] = avg;
-                        pixel[j + 1] = avg;
-                        pixel[j + 2] = avg;
+                            pixel[j] = avg;
+                            pixel[j + 1] = avg;
+                            pixel[j + 2] = avg;
+                        }
+
+                        if (!imgsBuffer[i]) {
+                            imgsBuffer[i] = document.createElement("canvas");
+                            imgsBuffer[i].width = ctx.canvas.width;
+                            imgsBuffer[i].height = ctx.canvas.height;
+                            imgsBuffer[i].getContext("2d").drawImage(images[i], 0, 0);
+                        }
+
+                        ctx.putImageData(imgData, 0, 0);
+
                     }
-
-                    if (!imgsBuffer[i]) {
-                        imgsBuffer[i] = document.createElement("canvas");
-                        imgsBuffer[i].width = ctx.canvas.width;
-                        imgsBuffer[i].height = ctx.canvas.height;
-                        imgsBuffer[i].getContext("2d").drawImage(images[i], 0, 0);
-                    }
-
-                    ctx.putImageData(imgData, 0, 0);
-
                 }
+            } catch (e) {
             }
 
             db.all().each(function () {

@@ -5,6 +5,9 @@
     <title>canvas test</title>
     <link type="text/css" rel="stylesheet" href="css/global.css">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script src="js/lib/jquery-1.8.1.min.js"></script>
+    <script src="js/lib/jquery.easing.1.3.js"></script>
+    <script src="js/lib/ocanvas-2.2.1.min.js"></script>
 </head>
 <body oncontextmenu="return false">
 
@@ -21,7 +24,7 @@
                     <div id="horizon_scroll">
                         <div class="slider"></div>
                     </div>
-                    <canvas id="cav" width="550px" height="600px" class="border backgroundLiner">sorry!</canvas>
+                    <canvas id="cav" width="550px" height="600px" class="backgroundLiner">sorry!</canvas>
                 </div>
                 <div id="opt">
                     <ul>
@@ -52,10 +55,13 @@
                             </ul>
                         </li>
                         <li><a id="property">属性</a></li>
-                        <li><a id="fullscreen">画布太小？</a></li>
+                        <li><a id="fullscreen">进入全屏</a></li>
                     </ul>
                 </div>
             </div>
+            <script type="text/javascript">
+                console.log($("#cav").parent().offset());
+            </script>
         </td>
     </tr>
 </table>
@@ -174,9 +180,6 @@
         </tr>
     </table>
 </div>
-<script src="js/lib/jquery-1.8.1.min.js"></script>
-<script src="js/lib/jquery.easing.1.3.js"></script>
-<script src="js/lib/ocanvas-2.2.1.min.js"></script>
 
 <script src="js/project/animation.js"></script>
 <script src="js/project/dimensions.js"></script>

@@ -234,8 +234,8 @@
                 temp.x = parseInt($main.css("left"));
                 temp.y = parseInt($main.css("top"));
             }
-            adjustWidth($main, $parts, dim.width);
-            adjustHeight($main, $parts, dim.height);
+            adjustWidth($main, $parts, dim.width - 12);
+            adjustHeight($main, $parts, dim.height - 37);
             adjustPosition(ox, oy);
         }
 

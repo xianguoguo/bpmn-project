@@ -167,7 +167,7 @@
 
                 this.all().each(function () {
                     this.x = (this.cols + 1 ) * width / (table[this.rows].length + 1) - 100;
-                    this.y = this.rows * 100 + 23;
+                    this.y = this.rows * 150 + 23;
                 });
                 //*/
 
