@@ -97,7 +97,10 @@
                     width = !isNaN(parseFloat(value)) ? parseFloat(value) : width;
                     this.canvasElement.width = width;
                     this.background.set(this.settings.background);
-                    this.redraw();
+                    //because of the redraw function must also clear the canvas , so I reaplce it with redrawObjects.
+                    //by wuchu
+                    //this.redraw();
+                    this.redrawObjects();
                 },
                 get:function () {
                     return width;
@@ -110,7 +113,9 @@
                     height = !isNaN(parseFloat(value)) ? parseFloat(value) : height;
                     this.canvasElement.height = height;
                     this.background.set(this.settings.background);
-                    this.redraw();
+                    //same as the width property.
+                    //this.redraw();
+                    this.redrawObjects();
                 },
                 get:function () {
                     return height;
@@ -282,6 +287,13 @@
         // Shorthand method for redrawing the canvas
         redraw:function () {
             this.draw.redraw();
+
+            return this;
+        },
+
+        //added by wuchu
+        redrawObjects:function () {
+            this.draw.redrawObjects();
 
             return this;
         },
@@ -2089,11 +2101,11 @@
             },
 
             // Method for drawing all objects in the object list
-            // modify by wuchu , because firefox paformence not well.
+            // modify by wuchu , because in firefox dragging shap is not well.
             redraw:function (forceClear) {
                 var _this = this;
-                if(oCanvas.frameID === null){
-                    oCanvas.frameID = requestAnimationFrame(function(){
+                if (oCanvas.frameID === null) {
+                    oCanvas.frameID = requestAnimationFrame(function () {
                         forceClear = forceClear || false;
 
                         // Clear the canvas (keep the background)
@@ -2112,6 +2124,11 @@
                 }
 
                 return this;
+            },
+
+            //added by wuchu
+            redrawObjects:function () {
+                this.drawObjects(this.core.children);
             },
 
             drawObjects:function (objects) {
