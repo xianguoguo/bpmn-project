@@ -11,6 +11,10 @@
 
     });
 
+    $(".quit").bind("click", function () {
+
+    });
+
     $(".reload").bind("click", function () {
         $.bpmn.resetCanvas();
         $.bpmn.reload();
@@ -32,15 +36,24 @@
         $.bpmn.$majorWindow.adjustWidth(width);
         $.bpmn.$majorWindow.adjustHeight(height);
 
-        $.bpmn.centerTheMajorWindow();
+        $.bpmn.$majorWindow.toCenter(500);
     });
 
     $(".customResize").bind("click", function () {
-
+        $.bpmn.showCustomResizeWindow();
     });
 
     $(".autoLayout").bind("click", function () {
         $.bpmn.autoLayout();
+    });
+
+    $(".saveLayout").bind("click", function () {
+        $.bpmn.saveLayout();
+        alert("布局数据已保存！");
+    });
+
+    $(".restoreLayout").bind("click", function () {
+        $.bpmn.restoreLayout();
     });
 
     $(".useLinkLine").bind("click", function () {
@@ -125,8 +138,11 @@
         if (flag !== "√") {
             $(this).children("span").text("√");
 
-            for (var i in imgsBuffer) {
-                images[i].getContext("2d").drawImage(imgsBuffer[i], 0, 0);
+            try {
+                for (var i in imgsBuffer) {
+                    images[i].getContext("2d").drawImage(imgsBuffer[i], 0, 0);
+                }
+            } catch (e) {
             }
 
             db.all().each(function () {

@@ -29,7 +29,7 @@
                 <div id="opt">
                     <ul>
                         <li><a id="add">新增节点</a></li>
-                        <li><a id="layout">自动布局</a></li>
+                        <li><a id="layout">重置布局</a></li>
                         <li><a id="redo">重做</a></li>
                         <li><a id="undo">撤销</a></li>
                         <li><a id="link">连接</a></li>
@@ -72,7 +72,7 @@
                             <a>文件</a>
                             <ul>
                                 <li><a class="save">云保存</a></li>
-                                <li><a class="reload">重新加载</a></li>
+                                <li><a class="reload">云加载</a></li>
                             </ul>
                         </li>
                         <li>
@@ -87,7 +87,13 @@
                                         <li><a class="customResize">自定义</a></li>
                                     </ul>
                                 </li>
-                                <li><a class="showBackground">显示网格<span>√</span></a></li>
+                                <li>
+                                    <a>颜色<span>+</span></a>
+                                    <ul>
+                                        <li><a class="grayscale">灰度<span></span></a></li>
+                                        <li><a class="colorful">16位彩<span>√</span></a></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </li>
                         <li>
@@ -95,19 +101,14 @@
                             <ul>
                                 <li><a class="undo">撤销</a></li>
                                 <li><a class="redo">重做</a></li>
-                                <li><a class="autoLayout">自动布局</a></li>
+                                <li><a class="saveLayout">保存当前布局</a></li>
+                                <li><a class="restoreLayout">恢复保存布局</a></li>
+                                <li><a class="autoLayout">重置布局</a></li>
                             </ul>
                         </li>
                         <li>
                             <a>显示</a>
                             <ul>
-                                <li>
-                                    <a>风格<span>+</span></a>
-                                    <ul>
-                                        <li><a class="grayscale">灰度<span></span></a></li>
-                                        <li><a class="colorful">16位彩<span>√</span></a></li>
-                                    </ul>
-                                </li>
                                 <li>
                                     <a>连接线<span>+</span></a>
                                     <ul>
@@ -115,6 +116,7 @@
                                         <li><a class="useDirectLine">直线连线<span></span></a></li>
                                     </ul>
                                 </li>
+                                <li><a class="showBackground">网格<span>√</span></a></li>
                             </ul>
                         </li>
                         <li>
@@ -176,6 +178,23 @@
             <td><input type="text"></td>
         </tr>
     </table>
+    <table id="customWinSize">
+        <tr>
+            <td>宽度:</td>
+            <td><input id="setWinWidth" type="text">px</td>
+        </tr>
+        <tr>
+            <td>高度:</td>
+            <td><input id="setWinHeight" type="text">px</td>
+        </tr>
+        <tr>
+            <td><input type="button" id="saveTheSize" value="确定"></td>
+            <td><input type="button" id="cancelTheSize" value="取消"></td>
+        </tr>
+        <tr>
+            <td colspan="2"><label id="showError"></label></td>
+        </tr>
+    </table>
 </div>
 
 <script src="js/project/animation.js"></script>
@@ -190,6 +209,7 @@
 
 <script src="js/project/userInterface.js"></script>
 <script src="js/project/menu.js"></script>
+<script src="js/project/customRsize.js"></script>
 
 </body>
 </html>

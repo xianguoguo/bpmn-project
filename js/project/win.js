@@ -2,8 +2,8 @@
     $.fn.windows = function (root, setting) {
         var div = "<div></div>",
             a = "<a></a>",
-            width = this.css("width"),
-            height = this.css("height"),
+            width = this.width(),
+            height = this.height(),
             $parent = $(root),
             $main,
             $parts,
@@ -175,56 +175,66 @@
         }
 
         function close() {
-            var count = 0;
-            var timer = null;
-            var x = parseInt($main.css("left"), 10);
-            var y = parseInt($main.css("top"), 10);
-            var width = parseInt($parts[1][1].css("width"), 10);
-            var height = parseInt($parts[1][1].css("height"), 10);
-            var i = 0;
+            var i = 0,
+                w = $main.width() - 12,
+                h = $main.height() - 37,
+                l = parseFloat($main.css("left")),
+                t = parseFloat($main.css("top"));
 
-            !onClose || onClose.call($main);
 
-            (function () {
-                count += 1;
-                adjustWidth($main, $parts, width - count * 10, true);
-                adjustHeight($main, $parts, height - count * 10, true);
-                $main.css({
-                    left:x + count * 5,
-                    top:y + count * 5
-                });
-                timer = requestAnimationFrame(arguments.callee);
-            })();
             for (; i < children.length; i++) {
                 children[i].remove();
             }
-            $main.fadeOut(150, function () {
-                cancelAnimationFrame(timer);
+
+            $main.animate({
+                "top":"+=30"
+            }, {
+                "duration":300,
+                "queue":false,
+                "step":function () {
+                    var val = t - parseFloat($main.css("top"));
+                    adjustHeight($main, $parts, h + val * 2, true);
+                }
+            });
+
+            $main.animate({
+                "left":"+=30"
+            }, {
+                "duration":300,
+                "queue":false,
+                "step":function () {
+                    var val = l - parseFloat($main.css("left"));
+                    adjustWidth($main, $parts, w + val * 2, true);
+                }
+            });
+
+            $main.fadeOut(300, function () {
+                !onClose || onClose.call($main);
             });
         }
 
         function minimize() {
-            var count = 0;
-            var timer = null;
-            var x = parseInt($main.css("left"), 10);
-            var y = parseInt($main.css("top"), 10);
-            var width = parseInt($parts[1][1].css("width"), 10);
-            var height = parseInt($parts[1][1].css("height"), 10);
+            var w = $main.width() - 12,
+                h = $main.height() - 37,
+                l = parseFloat($main.css("left")),
+                t = parseFloat($main.css("top"));
 
-            !onMinimize || onMinimize.call($main);
+            $main.animate({
+                "left":0,
+                "top":0
+            }, {
+                "duration":500,
+                "queue":false,
+                "step":function () {
+                    var dw = parseFloat($main.css("left")) / l,
+                        dh = parseFloat($main.css("top")) / t;
+                    adjustHeight($main, $parts, dh * h, true);
+                    adjustWidth($main, $parts, dw * w, true);
+                }
+            });
 
-            (function () {
-                count += 1;
-                adjustWidth($main, $parts, width - count * (width - 0) / 15, true);
-                adjustHeight($main, $parts, height - count * (height - 0) / 15, true);
-                $main.css({
-                    left:x - (x - ox) / 15 * count,
-                    top:y - (y - oy) / 15 * count
-                });
-                timer = requestAnimationFrame(arguments.callee);
-            })();
-            $main.fadeOut(300, function () {
-                cancelAnimationFrame(timer);
+            $main.fadeOut(500, function () {
+                !onMinimize || onMinimize.call($main);
             });
         }
 

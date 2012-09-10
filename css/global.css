@@ -374,4 +374,13 @@ a span {
     text-align: left;
 }
 
+#customWinSize{
+    border-collapse: collapse;
+    background-color: #ffffff;
+    width: 200px;
+    height: 90px;
+}
 
+#customWinSize td label {
+    color: red;
+}

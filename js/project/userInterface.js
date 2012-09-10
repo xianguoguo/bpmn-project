@@ -30,12 +30,14 @@
                 $background,
                 $majorWindow,
                 $propertyWindow,
+                $customResizeWin,
                 $horizonScroll,
                 $horizonSlider,
                 $verticalScroll,
                 $verticalSlider,
                 selectedObjects = [],
                 specialNodeOptions = "link insert replace rename remove property",
+                specialNotProcessOptions = "link remove",
                 specialStageOptions = "fullscreen add layout redo undo",
                 linker = null,
                 linkers = {},
@@ -145,6 +147,26 @@
                 }).minimize(function () {
                     this.adjustWidth(583);
                     this.adjustHeight(200);
+                    options.isFullScreen || $("body").removeClass("hidescroll");
+                    $blackBackground.fadeOut(500);
+                });
+            $customResizeWin = $("#customWinSize")
+                .windows("body", {
+                    "minWidth":200
+                }).css({
+                    "display":"none",
+                    "z-index":1003,
+                    "position":"fixed",
+                    "left":options.screenDimensions.width / 2 - 100,
+                    "top":options.screenDimensions.height / 2 - 45
+                }).close(function () {
+                    this.adjustWidth(200);
+                    this.adjustHeight(90);
+                    options.isFullScreen || $("body").removeClass("hidescroll");
+                    $blackBackground.fadeOut(500);
+                }).minimize(function () {
+                    this.adjustWidth(200);
+                    this.adjustHeight(90);
                     options.isFullScreen || $("body").removeClass("hidescroll");
                     $blackBackground.fadeOut(500);
                 });
@@ -353,6 +375,22 @@
                     });
             }
 
+            function setOptionsForNotProcessNode(){
+                $rightOptionPanel
+                    .children("ul")
+                    .children("li")
+                    .children("a")
+                    .each(function () {
+                        var spec = specialNotProcessOptions.split(" ");
+                        $(this).css({"display":"none"});
+                        for (var i = 0; i < spec.length; i++) {
+                            if ($(this).attr("id") === spec[i]) {
+                                $(this).css({"display":"block"});
+                            }
+                        }
+                    });
+            }
+
             function resizeBackground() {
                 if (options.screenDimensions.width > parseInt($background.css("width"), 10)) {
                     $background.css({"width":options.screenDimensions.width});
@@ -362,28 +400,21 @@
                 }
             }
 
-            function centerTheMajorWindow() {
-                var left = (options.screenDimensions.width - canvas.width) / 2 - 6,
-                    top = (options.screenDimensions.height - canvas.height) / 2 - 37;
-                top = Math.max(0, top);
-                $majorWindow.stop().animate({
-                    "left":left,
-                    "top":top
-                }, 500, "easeOutBack");
-            }
-
-            function centerThePropertyWindow() {
-                $propertyWindow.stop().animate({
-                    "left":options.screenDimensions.width / 2 - 291,
-                    "top":options.screenDimensions.height / 2 - 150
-                }, 500, "easeOutBack");
-            }
-
             function showPropertyWindow() {
                 $blackBackground.fadeTo(500, 0.5, function () {
                     $("body").addClass("hidescroll");
                     $propertyWindow.fadeIn(500, function () {
-                        centerThePropertyWindow();
+                        //centerThePropertyWindow();
+                        $propertyWindow.toCenter(500);
+                    });
+                });
+            }
+
+            function showCustomResizeWindow() {
+                $blackBackground.fadeTo(500, 0.5, function () {
+                    $("body").addClass("hidescroll");
+                    $customResizeWin.fadeIn(500, function () {
+                        $customResizeWin.toCenter(500);
                     });
                 });
             }
@@ -415,7 +446,24 @@
                 canvas
                     .dataBase
                     .all()
-                    .layout(0)
+                    .layout(0);
+                restoreLayout();
+            }
+
+            function saveLayout() {
+                canvas
+                    .dataBase
+                    .all()
+                    .each(function () {
+                        this.x = this.export.x;
+                        this.y = this.export.y;
+                    });
+            }
+
+            function restoreLayout() {
+                canvas
+                    .dataBase
+                    .all()
                     .each(function () {
                         if (this.export.x !== this.x || this.export.y !== this.y) {
                             this.export.stop().animate({
@@ -429,29 +477,74 @@
                     });
             }
 
+            /*
+             function startShowIcons(cav, callback) {
+             var ctx = cav.getContext("2d");
+             var _count = 0;
+             var n = 2;
+             var timer = null;
+             var t;
+             (function () {
+             _count++;
+             if (_count % n === 0) {
+             t = _count / n;
+             ctx.clearRect(0, 0, 200, 200);
+             ctx.drawImage(canvas.ready.images[t], 0, 0);
+             $(cav).css({
+             "left":options.screenDimensions.width / 2 - 100,
+             "top":options.screenDimensions.height / 2 - 100
+             });
+             }
+             timer = requestAnimationFrame(arguments.callee);
+             if (t === 105) {
+             cancelAnimationFrame(timer);
+             callback();
+             }
+             })();
+             }
+             */
+
             function startShowIcons(cav, callback) {
-                var ctx = cav.getContext("2d");
-                var _count = 0;
-                var n = 2;
-                var timer = null;
-                var t;
-                (function () {
-                    _count++;
-                    if (_count % n === 0) {
-                        t = _count / n;
-                        ctx.clearRect(0, 0, 200, 200);
-                        ctx.drawImage(canvas.ready.images[t], 0, 0);
-                        $(cav).css({
-                            "left":options.screenDimensions.width / 2 - 100,
-                            "top":options.screenDimensions.height / 2 - 100
+                var ctx = cav.getContext("2d"),
+                    _frameID = null;
+                ani = new Animation({
+                    "from":1,
+                    "to":105,
+                    "duration":2000
+                });
+
+                ani.every(function (val) {
+                    if (_frameID === null) {
+                        _frameID = requestAnimationFrame(function () {
+                            ctx.clearRect(0, 0, 200, 200);
+                            //console.log(~~val);
+                            ctx.drawImage(canvas.ready.images[~~val], 0, 0);
+                            $(cav).css({
+                                "left":options.screenDimensions.width / 2 - 100,
+                                "top":options.screenDimensions.height / 2 - 100
+                            });
+                            _frameID = null;
                         });
                     }
-                    timer = requestAnimationFrame(arguments.callee);
-                    if (t === 105) {
-                        cancelAnimationFrame(timer);
-                        callback();
-                    }
-                })();
+                });
+                ani.init(null, callback);
+                ani.play(timer);
+            }
+
+            function onEnter() {
+                $("#ctx")
+                    .find("td:last")
+                    .append($("#cav")
+                    .parent("div"))
+                    .append($rightOptionPanel);
+                $majorWindow
+                    //.adjustPosition(options.screenDimensions.width / 2 - options.canvasWidth / 2,options.screenDimensions.height / 2 - options.canvasHeight / 2)
+                    .adjustWidth(options.canvasWidth)
+                    .adjustHeight(options.canvasHeight)
+                    .fadeIn(500, function () {
+                        //centerTheMajorWindow();
+                        $majorWindow.toCenter(500);
+                    });
             }
 
             function toFullScreen() {
@@ -465,19 +558,14 @@
                             "height":"200px",
                             "width":"200px"
                         }).appendTo(this);
+
                     startShowIcons($icon[0], function () {
-                        $icon.fadeOut(500, function () {
-                            $icon.remove();
-                            $("#ctx").find("td:last").append($("#cav").parent("div")).append($rightOptionPanel);
-                            $majorWindow
-                                //.adjustPosition(options.screenDimensions.width / 2 - options.canvasWidth / 2,options.screenDimensions.height / 2 - options.canvasHeight / 2)
-                                .adjustWidth(options.canvasWidth)
-                                .adjustHeight(options.canvasHeight)
-                                .fadeIn(500, function () {
-                                    centerTheMajorWindow();
-                                });
+                        $icon.fadeOut(300, function () {
+                            $(this).remove();
+                            onEnter();
                         });
                     });
+
                 });
             }
 
@@ -502,7 +590,9 @@
                 options.canvasWidth = canvas.width;
                 options.canvasHeight = canvas.height + 28;
 
-                $("#old_position").append($("#cav").parent("div")).append($rightOptionPanel);
+                $("#old_position")
+                    .append($("#cav").parent("div"))
+                    .append($rightOptionPanel);
 
                 setCanvasHeight(600, true);
                 setCanvasWidth(550, true);
@@ -513,10 +603,12 @@
             window.onresize = function () {
                 if (options.isFullScreen) {
                     resizeBackground();
-                    centerTheMajorWindow();
+                    //centerTheMajorWindow();
+                    $majorWindow.toCenter(500);
                 }
                 if (options.isPorpertyWindowShow) {
-                    centerThePropertyWindow();
+                    //centerThePropertyWindow();
+                    $propertyWindow.toCenter(500);
                 }
             };
 
@@ -540,7 +632,11 @@
                 if (e.button === 2) {
                     var offset = $("#cav").offset();
                     if (options.isClickNode) {
-                        setOptionsForNode();
+                        if(options.isSelected && /Subprocess$/g.test(selectedObjects[0].export.type)){
+                            setOptionsForNode();
+                        } else {
+                            setOptionsForNotProcessNode();
+                        }
                     } else {
                         setOptionsForStage();
                     }
@@ -801,10 +897,13 @@
                 bpmn:{
                     setCanvasWidth:setCanvasWidth,
                     setCanvasHeight:setCanvasHeight,
-                    centerTheMajorWindow:centerTheMajorWindow,
-                    centerThePropertyWindow:centerThePropertyWindow,
                     $majorWindow:$majorWindow,
+                    $customResizeWin:$customResizeWin,
+                    showCustomResizeWindow:showCustomResizeWindow,
+                    $blackBackground:$blackBackground,
                     autoLayout:autoLayout,
+                    saveLayout:saveLayout,
+                    restoreLayout:restoreLayout,
                     reload:onImagesLoaded,
                     resetCanvas:resetCanvas,
                     showLines:showLines,

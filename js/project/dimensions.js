@@ -26,6 +26,15 @@
             } else {
                 $this.text(str);
             }
+        },
+        toCenter:function (speed, callback) {
+            var left = $(window).width() / 2 - $(this).width() / 2,
+                top = $(window).height() / 2 - $(this).height() / 2;
+            top = Math.max(top, 0);
+            $(this).stop().animate({
+                "left":left,
+                "top":top
+            }, speed, "easeOutBack", callback);
         }
     });
 })(jQuery, window, undefined);
