@@ -53,7 +53,7 @@
                 //var icon = core.ready.images["subprocess_icon"];
                 this.text = core.display.text({
                     align:"center",
-                    font:"bold 12px 'Microsoft YaHei'",
+                    font:"normal 12px 'Microsoft YaHei'",
                     text:"New subprocess.",
                     fill:"#000"
                 });

@@ -5,11 +5,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/global.css" afterPath="$PROJECT_DIR$/css/global.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/project/dataBase.js" afterPath="$PROJECT_DIR$/js/project/dataBase.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/project/inputer.js" afterPath="$PROJECT_DIR$/js/project/inputer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/project/menu.js" afterPath="$PROJECT_DIR$/js/project/menu.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/project/elems.js" afterPath="$PROJECT_DIR$/js/project/elems.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/project/userInterface.js" afterPath="$PROJECT_DIR$/js/project/userInterface.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/project/win.js" afterPath="$PROJECT_DIR$/js/project/win.js" />
     </list>
     <ignored path="Joo-canvas-1.4.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,29 +28,40 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="73" column="28" selection-start="2815" selection-end="2815" vertical-scroll-proportion="2.565905">
+            <state line="13" column="24" selection-start="560" selection-end="560" vertical-scroll-proportion="-10.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="animation.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/project/animation.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="28" selection-start="28" selection-end="28" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="userInterface.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="userInterface.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/project/userInterface.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="677" column="63" selection-start="28900" selection-end="28900" vertical-scroll-proportion="0.0">
+            <state line="289" column="17" selection-start="12153" selection-end="12153" vertical-scroll-proportion="0.8281787">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="elems.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/project/elems.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="55" column="32" selection-start="1688" selection-end="1688" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="jquery-1.8.1.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/lib/jquery-1.8.1.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6378" column="33" selection-start="243063" selection-end="243063" vertical-scroll-proportion="-8.714286">
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -70,16 +78,7 @@
       <file leaf-file-name="global.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/global.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="27" selection-start="633" selection-end="633" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dataBase.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/project/dataBase.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="116" column="60" selection-start="3887" selection-end="3887" vertical-scroll-proportion="0.0">
+            <state line="3" column="16" selection-start="51" selection-end="51" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -136,16 +135,16 @@
       <list>
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/js/project/drag.js" />
-        <option value="$PROJECT_DIR$/js/project/elems.js" />
         <option value="$PROJECT_DIR$/js/project/ready.js" />
         <option value="$PROJECT_DIR$/js/project/menu.js" />
         <option value="$PROJECT_DIR$/js/project/dataBase.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/project/dimensions.js" />
         <option value="$PROJECT_DIR$/js/project/win.js" />
-        <option value="$PROJECT_DIR$/js/project/userInterface.js" />
         <option value="$PROJECT_DIR$/js/project/inputer.js" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/js/project/userInterface.js" />
         <option value="$PROJECT_DIR$/css/global.css" />
+        <option value="$PROJECT_DIR$/js/project/elems.js" />
       </list>
     </option>
   </component>
@@ -180,6 +179,16 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -250,15 +259,14 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.Font" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="JavascriptDebugSession" factoryName="Local">
@@ -390,91 +398,79 @@
         <state line="11" column="0" selection-start="242" selection-end="242" vertical-scroll-proportion="0.17889088" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/project/elems.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="22" selection-start="324" selection-end="324" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/project/ready.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="89" column="93" selection-start="4148" selection-end="4148" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/project/animation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="28" selection-start="28" selection-end="28" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/project/dataBase.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="116" column="60" selection-start="3887" selection-end="3887" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/project/menu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="29" selection-start="377" selection-end="377" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/project/win.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="237" column="55" selection-start="7753" selection-end="7753" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/project/drag.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="92" column="83" selection-start="3261" selection-end="3261" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="92" column="83" selection-start="3261" selection-end="3261" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/lib/jquery-1.8.1.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9148" column="36" selection-start="346720" selection-end="346720" vertical-scroll-proportion="-3.5532646">
+        <state line="6378" column="33" selection-start="243063" selection-end="243063" vertical-scroll-proportion="-8.714286">
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/project/win.js">
+    <entry file="file://$PROJECT_DIR$/js/project/inputer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="237" column="55" selection-start="7753" selection-end="7753" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="33" column="45" selection-start="1154" selection-end="1154" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/project/dimensions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="13" selection-start="643" selection-end="643" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="13" column="13" selection-start="643" selection-end="643" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/project/menu.js">
+    <entry file="file://$PROJECT_DIR$/js/project/elems.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="29" selection-start="377" selection-end="377" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/project/animation.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="28" selection-start="28" selection-end="28" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/project/dataBase.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="116" column="60" selection-start="3887" selection-end="3887" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/project/inputer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="45" selection-start="1154" selection-end="1154" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/project/userInterface.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="677" column="63" selection-start="28900" selection-end="28900" vertical-scroll-proportion="0.0">
+        <state line="55" column="32" selection-start="1688" selection-end="1688" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/css/global.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="27" selection-start="633" selection-end="633" vertical-scroll-proportion="0.0">
+        <state line="3" column="16" selection-start="51" selection-end="51" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="73" column="28" selection-start="2815" selection-end="2815" vertical-scroll-proportion="2.565905">
+        <state line="13" column="24" selection-start="560" selection-end="560" vertical-scroll-proportion="-10.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/project/userInterface.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="289" column="17" selection-start="12153" selection-end="12153" vertical-scroll-proportion="0.8281787">
           <folding />
         </state>
       </provider>

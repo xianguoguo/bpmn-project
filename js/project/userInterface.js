@@ -283,13 +283,17 @@
             function showRightOptionPanel(x, y) {
                 var left = options.isFullScreen ? x + 6 : x,
                     top = options.isFullScreen ? y + 59 : y;
-                left += $("body").scrollLeft();
-                top += $("body").scrollTop();
+                //console.log($.browser);
+                if (!$.browser.chrome) {
+                    left += $("body").scrollLeft();
+                    top += $("body").scrollTop();
+                }
                 if (!options.isRightOptionExist) {
                     $rightOptionPanel.css({
                         "left":left,
                         "top":top
                     }).fadeIn(100);
+
                 } else {
                     $rightOptionPanel.fadeOut(100, function () {
                         $(this).css({
@@ -485,8 +489,8 @@
 
                 $("#old_position").append($("#cav").parent("div")).append($rightOptionPanel);
 
-                setCanvasHeight(600,true);
-                setCanvasWidth(550,true);
+                setCanvasHeight(600, true);
+                setCanvasWidth(550, true);
 
                 $background.fadeOut(500);
             }
@@ -529,6 +533,7 @@
                         showRightOptionPanel(e.x + 1, e.y + 1);
                     } else {
                         showRightOptionPanel(e.x + offset.left + 1, e.y + offset.top + 1);
+                        //console.log(e.y + offset.top + 1);
                     }
                 }
             });
