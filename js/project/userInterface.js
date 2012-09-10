@@ -484,6 +484,21 @@
             function quitFullScreen() {
                 $("body").removeClass("hidescroll");
 
+                if (options.isRightOptionExist) {
+                    $rightOptionPanel.css({
+                        "display":"none"
+                    });
+                }
+
+                if (options.isScrollShow) {
+                    $verticalScroll.css({
+                        "display":"none"
+                    });
+                    $horizonScroll.css({
+                        "display":"none"
+                    });
+                }
+
                 options.canvasWidth = canvas.width;
                 options.canvasHeight = canvas.height + 28;
 

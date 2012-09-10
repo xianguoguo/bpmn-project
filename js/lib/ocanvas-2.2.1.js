@@ -27,6 +27,9 @@
         // Object containing all the registered plugins
         plugins:{},
 
+        //frameID
+        frameID:null,
+
         // Define the core class
         core:function (options) {
             this.isCore = true;
@@ -2086,22 +2089,27 @@
             },
 
             // Method for drawing all objects in the object list
+            // modify by wuchu , because firefox paformence not well.
             redraw:function (forceClear) {
                 var _this = this;
-                requestAnimationFrame(function(){
-                    forceClear = forceClear || false;
+                if(oCanvas.frameID === null){
+                    oCanvas.frameID = requestAnimationFrame(function(){
+                        forceClear = forceClear || false;
 
-                    // Clear the canvas (keep the background)
-                    if (_this.core.settings.clearEachFrame || forceClear) {
-                        _this.clear();
-                    }
+                        // Clear the canvas (keep the background)
+                        if (_this.core.settings.clearEachFrame || forceClear) {
+                            _this.clear();
+                        }
 
-                    // Set a flag that will affect the value of the `drawn` property of display objects
-                    _this.isCleared = false;
+                        // Set a flag that will affect the value of the `drawn` property of display objects
+                        _this.isCleared = false;
 
-                    // Draw all objects in the correct order
-                    _this.drawObjects(_this.core.children);
-                });
+                        // Draw all objects in the correct order
+                        _this.drawObjects(_this.core.children);
+
+                        oCanvas.frameID = null;
+                    });
+                }
 
                 return this;
             },

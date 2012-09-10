@@ -182,6 +182,9 @@
             var width = parseInt($parts[1][1].css("width"), 10);
             var height = parseInt($parts[1][1].css("height"), 10);
             var i = 0;
+
+            !onClose || onClose.call($main);
+
             (function () {
                 count += 1;
                 adjustWidth($main, $parts, width - count * 10, true);
@@ -197,7 +200,6 @@
             }
             $main.fadeOut(150, function () {
                 cancelAnimationFrame(timer);
-                !onClose || onClose.call($main);
             });
         }
 
@@ -208,6 +210,9 @@
             var y = parseInt($main.css("top"), 10);
             var width = parseInt($parts[1][1].css("width"), 10);
             var height = parseInt($parts[1][1].css("height"), 10);
+
+            !onMinimize || onMinimize.call($main);
+
             (function () {
                 count += 1;
                 adjustWidth($main, $parts, width - count * (width - 0) / 15, true);
@@ -220,7 +225,6 @@
             })();
             $main.fadeOut(300, function () {
                 cancelAnimationFrame(timer);
-                !onMinimize || onMinimize.call($main);
             });
         }
 
