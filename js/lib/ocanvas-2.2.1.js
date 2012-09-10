@@ -2087,18 +2087,21 @@
 
             // Method for drawing all objects in the object list
             redraw:function (forceClear) {
-                forceClear = forceClear || false;
+                var _this = this;
+                requestAnimationFrame(function(){
+                    forceClear = forceClear || false;
 
-                // Clear the canvas (keep the background)
-                if (this.core.settings.clearEachFrame || forceClear) {
-                    this.clear();
-                }
+                    // Clear the canvas (keep the background)
+                    if (_this.core.settings.clearEachFrame || forceClear) {
+                        _this.clear();
+                    }
 
-                // Set a flag that will affect the value of the `drawn` property of display objects
-                this.isCleared = false;
+                    // Set a flag that will affect the value of the `drawn` property of display objects
+                    _this.isCleared = false;
 
-                // Draw all objects in the correct order
-                this.drawObjects(this.core.children);
+                    // Draw all objects in the correct order
+                    _this.drawObjects(_this.core.children);
+                });
 
                 return this;
             },
