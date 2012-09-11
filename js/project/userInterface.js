@@ -617,7 +617,7 @@
                     $majorWindow.toCenter(500);
                 }
                 for (var key in moudleWindows) {
-                    if (/block/g.test(moudleWindows[key].css("display"))) {
+                    if (/block/i.test(moudleWindows[key].css("display"))) {
                         moudleWindows[key].toCenter(500);
                     }
                 }
@@ -753,6 +753,8 @@
                     dw = scroll_w - slider_w,
                     x = parseFloat($horizonSlider.css("left"));
 
+                val = val > 0 ? 1 : -1;
+
                 if ((x >= dw && val > 0) || (x <= 0 && val < 0)) {
                     val = 0;
                 }
@@ -784,6 +786,8 @@
                     dh = scroll_h - slider_h,
                     y = parseFloat($verticalSlider.css("top"));
 
+                val = val > 0 ? 1 : -1;
+
                 if ((y >= dh && val > 0) || (y <= 0 && val < 0)) {
                     val = 0;
                 }
@@ -812,40 +816,45 @@
                 return false;
             }
 
-
             $horizonSlider.bind("mousedown", onSliderChose);
 
             $verticalSlider.bind("mousedown", onSliderChose);
 
+            var mouseWheelEvent = $.browser.mozilla ? "DOMMouseScroll" : "mousewheel";
+
             $horizonScroll.hover(function () {
-                window.onmousewheel = document.onmousewheel = forbidenMouseWheel;
                 if ($.browser.msie) {
-                    this.attachEvent("mousewheel", activeMouseWheel_X);
+                    this.attachEvent(mouseWheelEvent, activeMouseWheel_X);
+                    window.attachEvent(mouseWheelEvent, forbidenMouseWheel);
                 } else {
-                    this.addEventListener("mousewheel", activeMouseWheel_X, false);
+                    this.addEventListener(mouseWheelEvent, activeMouseWheel_X, false);
+                    window.addEventListener(mouseWheelEvent, forbidenMouseWheel, false);
                 }
             }, function () {
-                window.onmousewheel = document.onmousewheel = null;
                 if ($.browser.msie) {
-                    this.detachEvent("mousewheel", activeMouseWheel_X);
+                    this.detachEvent(mouseWheelEvent, activeMouseWheel_X);
+                    window.detachEvent(mouseWheelEvent, forbidenMouseWheel);
                 } else {
-                    this.removeEventListener("mousewheel", activeMouseWheel_X, false);
+                    this.removeEventListener(mouseWheelEvent, activeMouseWheel_X, false);
+                    window.removeEventListener(mouseWheelEvent, forbidenMouseWheel, false);
                 }
             });
 
             $verticalScroll.hover(function () {
-                window.onmousewheel = document.onmousewheel = forbidenMouseWheel;
                 if ($.browser.msie) {
-                    this.attachEvent("mousewheel", activeMouseWheel_Y);
+                    this.attachEvent(mouseWheelEvent, activeMouseWheel_Y);
+                    window.attachEvent(mouseWheelEvent, forbidenMouseWheel);
                 } else {
-                    this.addEventListener("mousewheel", activeMouseWheel_Y, false);
+                    this.addEventListener(mouseWheelEvent, activeMouseWheel_Y, false);
+                    window.addEventListener(mouseWheelEvent, forbidenMouseWheel, false);
                 }
             }, function () {
-                window.onmousewheel = document.onmousewheel = null;
                 if ($.browser.msie) {
-                    this.detachEvent("mousewheel", activeMouseWheel_Y);
+                    this.detachEvent(mouseWheelEvent, activeMouseWheel_Y);
+                    window.detachEvent(mouseWheelEvent, forbidenMouseWheel);
                 } else {
-                    this.removeEventListener("mousewheel", activeMouseWheel_Y, false);
+                    this.removeEventListener(mouseWheelEvent, activeMouseWheel_Y, false);
+                    window.removeEventListener(mouseWheelEvent, forbidenMouseWheel, false);
                 }
             });
 
@@ -978,8 +987,8 @@
                     .all()
                     .each(function () {
                         this.export = createNode(this.type, {
-                            x:this.x,
-                            y:this.y
+                            x:this.x - options.offsetX,
+                            y:this.y - options.offsetY
                         });
                         if (this.text !== "") {
                             this.export.text.text = this.text;
