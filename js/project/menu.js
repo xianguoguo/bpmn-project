@@ -11,10 +11,6 @@
 
     });
 
-    $(".quit").bind("click", function () {
-
-    });
-
     $(".reload").bind("click", function () {
         $.bpmn.resetCanvas();
         $.bpmn.reload();
@@ -40,7 +36,7 @@
     });
 
     $(".customResize").bind("click", function () {
-        $.bpmn.showCustomResizeWindow();
+        $.bpmn.showMoudleWindow("customResize");
     });
 
     $(".autoLayout").bind("click", function () {
@@ -154,5 +150,13 @@
             $(".grayscale").children("span").text("");
             $.bpmn.redraw();
         }
+    });
+
+    $(".about").bind("click", function () {
+        $.bpmn.showMoudleWindow("about");
+    });
+
+    $(".contact").bind("click",function(){
+        $.bpmn.showMoudleWindow("contact");
     });
 })(jQuery, window, undefined);

@@ -277,29 +277,30 @@
                         y:tmp
                     });
                 }
+                tmp = points[3].y > points[2].y ? -12 : 12;
+
                 ctx.save();
                 ctx.beginPath();
-                ctx.lineWidth = 1;
                 ctx.moveTo(round(points[0].x), round(points[0].y));
-                for (i = 1; i < points.length; i++) {
+                for (i = 1; i < points.length - 1; i++) {
                     ctx.lineTo(round(points[i].x), round(points[i].y));
                 }
+                ctx.lineTo(round(points[3].x), round(points[3].y + tmp));
+                ctx.lineWidth = 1;
+                ctx.lineCap = "round";
+                ctx.fillStyle = "rgba(0,0,0,0.5)";
                 ctx.stroke();
                 ctx.closePath();
                 ctx.restore();
 
-                tmp = points[3].y > points[2].y ? -10 : 10;
                 ctx.save();
                 ctx.beginPath();
-                ctx.lineWidth = 1;
                 ctx.translate(round(points[3].x), round(points[3].y));
-                ctx.rotate(Math.PI / 6);
                 ctx.moveTo(0, 0);
-                ctx.lineTo(0, tmp);
-                ctx.rotate(-Math.PI / 3);
-                ctx.moveTo(0, 0);
-                ctx.lineTo(0, tmp);
-                ctx.stroke();
+                ctx.lineTo(-3, tmp);
+                ctx.lineTo(3, tmp);
+                ctx.fillStyle = "rgba(0,0,0,0.5)";
+                ctx.fill();
                 ctx.closePath();
                 ctx.restore();
             }
@@ -363,7 +364,7 @@
                 dy = points[1].y - points[0].y;
                 len = Math.sqrt(dx * dx + dy * dy);
                 tmp = Math.asin(dy / len);
-                director = dx > 0 ? tmp : - Math.PI - tmp;
+                director = dx > 0 ? tmp : -Math.PI - tmp;
                 len = Math.max(len, 12);
                 w = 1;
 
@@ -382,7 +383,7 @@
                 ctx.lineTo(len - 12, w);
                 ctx.lineTo(0, w);
 
-                ctx.fillStyle = "rgba(0,0,0,0.5)"
+                ctx.fillStyle = "rgba(0,0,0,0.5)";
                 ctx.fill();
                 //ctx.stroke();
                 ctx.closePath();

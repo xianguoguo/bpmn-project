@@ -12,8 +12,7 @@
                 $.bpmn.$majorWindow.adjustHeight(h);
                 $.bpmn.$majorWindow.toCenter(500);
 
-                $.bpmn.$customResizeWin.fadeOut(500);
-                $.bpmn.$blackBackground.fadeOut(500);
+                $.bpmn.hideMoudleWindow("customResize");
 
                 $("#showError").text("");
             }
@@ -22,8 +21,7 @@
         }
     });
     $("#cancelTheSize").bind("click", function () {
-        $.bpmn.$customResizeWin.fadeOut(500);
-        $.bpmn.$blackBackground.fadeOut(500);
+        $.bpmn.hideMoudleWindow("customResize");
 
         $("#showError").text("");
     });

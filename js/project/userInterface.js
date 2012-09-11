@@ -29,13 +29,12 @@
                 $rightOptionPanel,
                 $background,
                 $majorWindow,
-                $propertyWindow,
-                $customResizeWin,
                 $horizonScroll,
                 $horizonSlider,
                 $verticalScroll,
                 $verticalSlider,
                 selectedObjects = [],
+                moudleWindows = {},
                 specialNodeOptions = "link insert replace rename remove property",
                 specialNotProcessOptions = "link remove",
                 specialStageOptions = "fullscreen add layout redo undo",
@@ -86,9 +85,6 @@
                 get isScrollShow() {
                     return /block/i.test($horizonScroll.css("display") + $verticalScroll.css("display"));
                 },
-                get isPorpertyWindowShow() {
-                    return /block/i.test($propertyWindow.css("display"));
-                },
                 get lineType() {
                     var flag = $(".useLinkLine").children("span").text();
                     if (flag === "√") {
@@ -96,14 +92,18 @@
                     }
                     return "directLine";
                 },
+                scrollSensitivity:10,
+                //The hot point(position) of the tree's nodes.
                 offsetX:0,
                 offsetY:0,
                 //Just to be the cache of old fullscreen's canvas dimention.
                 canvasHeight:600,
                 canvasWidth:550,
+                //Flag if there are some nodes clicked.
                 isClickNode:false
             };
 
+            //初始化全局timer,用来处理自定义动画。
             timer.init();
 
             canvas = oCanvas.create({canvas:"#cav"});
@@ -112,6 +112,7 @@
             $blackBackground = $(".blackback");
             $horizonScroll = $("#horizon_scroll");
             $verticalScroll = $("#vertical_scroll");
+
             $majorWindow = $("#ctx")
                 .windows(".back", {
                     "minWidth":420
@@ -131,45 +132,15 @@
                     $("#fullscreen").text("进入全屏");
 
                 }).css({"display":"none"});
-            $propertyWindow = $("#prop")
-                .windows("body")
-                .css({
-                    "display":"none",
-                    "z-index":1002,
-                    "position":"fixed",
-                    "left":options.screenDimensions.width / 2 - 291,
-                    "top":options.screenDimensions.height / 2 - 100
-                }).close(function () {
-                    this.adjustWidth(583);
-                    this.adjustHeight(200);
-                    options.isFullScreen || $("body").removeClass("hidescroll");
-                    $blackBackground.fadeOut(500);
-                }).minimize(function () {
-                    this.adjustWidth(583);
-                    this.adjustHeight(200);
-                    options.isFullScreen || $("body").removeClass("hidescroll");
-                    $blackBackground.fadeOut(500);
-                });
-            $customResizeWin = $("#customWinSize")
-                .windows("body", {
-                    "minWidth":200
-                }).css({
-                    "display":"none",
-                    "z-index":1003,
-                    "position":"fixed",
-                    "left":options.screenDimensions.width / 2 - 100,
-                    "top":options.screenDimensions.height / 2 - 45
-                }).close(function () {
-                    this.adjustWidth(200);
-                    this.adjustHeight(90);
-                    options.isFullScreen || $("body").removeClass("hidescroll");
-                    $blackBackground.fadeOut(500);
-                }).minimize(function () {
-                    this.adjustWidth(200);
-                    this.adjustHeight(90);
-                    options.isFullScreen || $("body").removeClass("hidescroll");
-                    $blackBackground.fadeOut(500);
-                });
+
+            createMoudleWindow("#prop", "property");
+
+            createMoudleWindow("#customWinSize", "customResize");
+
+            createMoudleWindow("#showInfo", "about");
+
+            createMoudleWindow("#contactUs", "contact");
+
             $horizonSlider = $horizonScroll
                 .children(".slider")
                 .drag(null, {
@@ -203,6 +174,7 @@
                         $horizonScroll.fadeOut(200);
                     }
                 });
+
             $verticalSlider = $verticalScroll
                 .children(".slider")
                 .drag(null, {
@@ -236,6 +208,73 @@
                         $verticalScroll.fadeOut(200);
                     }
                 });
+
+            function createMoudleWindow(domID, name) {
+                var width = $(domID).width(),
+                    height = $(domID).height(),
+                    zIndex = 1000,
+                    $theMoudleWin;
+                for (var key in moudleWindows) {
+                    zIndex = Math.max(zIndex, parseInt(moudleWindows[key].css("z-index"), 10));
+                }
+                $theMoudleWin = $(domID)
+                    .windows("body")
+                    .css({
+                        "display":"none",
+                        "z-index":zIndex + 1,
+                        "position":"fixed",
+                        "left":options.screenDimensions.width / 2 - width / 2,
+                        "top":options.screenDimensions.height / 2 - height / 2
+                    }).close(function () {
+                        this.adjustWidth(width);
+                        this.adjustHeight(height);
+                        options.isFullScreen || $("body").removeClass("hidescroll");
+                        $blackBackground.fadeOut(500);
+                    }).minimize(function () {
+                        this.adjustWidth(width);
+                        this.adjustHeight(height);
+                        options.isFullScreen || $("body").removeClass("hidescroll");
+                        $blackBackground.fadeOut(500);
+                    });
+                registerMoudleWindows(name, $theMoudleWin);
+                return $theMoudleWin;
+            }
+
+            function registerMoudleWindows(name, $win) {
+                moudleWindows[name] = $win;
+            }
+
+            function saveTreePos_Y() {
+                canvas.dataBase.all().each(function () {
+                    this.export.sy = this.export.y;
+                });
+            }
+
+            function saveTreePos_X() {
+                canvas.dataBase.all().each(function () {
+                    this.export.sx = this.export.x;
+                });
+            }
+
+            function updateTheTreeView_X(sx) {
+                var k = canvas.width / parseFloat($horizonSlider.css("width"));
+                var sliderX = parseFloat($horizonSlider.css("left"));
+                options.offsetX = sliderX * k;
+                canvas.dataBase.all().each(function () {
+                    this.export.x = this.export.sx - (sliderX - sx) * k;
+                });
+                canvas.redraw();
+            }
+
+            function updateTheTreeView_Y(sy) {
+                var k = canvas.height / parseFloat($verticalSlider.css("height"));
+                var sliderY = parseFloat($verticalSlider.css("top"));
+                options.offsetY = sliderY * k;
+                canvas.dataBase.all().each(function () {
+                    this.export.y = this.export.sy - (sliderY - sy) * k;
+                });
+                canvas.redraw();
+            }
 
             function setCanvasWidth(w, force) {
                 canvas.width = w;
@@ -375,7 +414,7 @@
                     });
             }
 
-            function setOptionsForNotProcessNode(){
+            function setOptionsForNotProcessNode() {
                 $rightOptionPanel
                     .children("ul")
                     .children("li")
@@ -400,22 +439,20 @@
                 }
             }
 
-            function showPropertyWindow() {
+            function showMoudleWindow(name) {
                 $blackBackground.fadeTo(500, 0.5, function () {
                     $("body").addClass("hidescroll");
-                    $propertyWindow.fadeIn(500, function () {
+                    moudleWindows[name].fadeIn(500, function () {
                         //centerThePropertyWindow();
-                        $propertyWindow.toCenter(500);
+                        $(this).toCenter(500);
                     });
                 });
             }
 
-            function showCustomResizeWindow() {
-                $blackBackground.fadeTo(500, 0.5, function () {
-                    $("body").addClass("hidescroll");
-                    $customResizeWin.fadeIn(500, function () {
-                        $customResizeWin.toCenter(500);
-                    });
+            function hideMoudleWindow(name) {
+                $blackBackground.fadeOut(300);
+                moudleWindows[name].fadeOut(300, function () {
+                    options.isFullScreen || $("body").removeClass("hidescroll");
                 });
             }
 
@@ -455,8 +492,8 @@
                     .dataBase
                     .all()
                     .each(function () {
-                        this.x = this.export.x;
-                        this.y = this.export.y;
+                        this.x = this.export.x + options.offsetX;
+                        this.y = this.export.y + options.offsetY;
                     });
             }
 
@@ -467,8 +504,8 @@
                     .each(function () {
                         if (this.export.x !== this.x || this.export.y !== this.y) {
                             this.export.stop().animate({
-                                "x":this.x,
-                                "y":this.y
+                                "x":this.x - options.offsetX,
+                                "y":this.y - options.offsetY
                             }, {
                                 duration:500,
                                 easing:"ease-out-back"
@@ -476,33 +513,6 @@
                         }
                     });
             }
-
-            /*
-             function startShowIcons(cav, callback) {
-             var ctx = cav.getContext("2d");
-             var _count = 0;
-             var n = 2;
-             var timer = null;
-             var t;
-             (function () {
-             _count++;
-             if (_count % n === 0) {
-             t = _count / n;
-             ctx.clearRect(0, 0, 200, 200);
-             ctx.drawImage(canvas.ready.images[t], 0, 0);
-             $(cav).css({
-             "left":options.screenDimensions.width / 2 - 100,
-             "top":options.screenDimensions.height / 2 - 100
-             });
-             }
-             timer = requestAnimationFrame(arguments.callee);
-             if (t === 105) {
-             cancelAnimationFrame(timer);
-             callback();
-             }
-             })();
-             }
-             */
 
             function startShowIcons(cav, callback) {
                 var ctx = cav.getContext("2d"),
@@ -600,17 +610,18 @@
                 $background.fadeOut(500);
             }
 
-            window.onresize = function () {
+            $(window).resize(function () {
                 if (options.isFullScreen) {
                     resizeBackground();
                     //centerTheMajorWindow();
                     $majorWindow.toCenter(500);
                 }
-                if (options.isPorpertyWindowShow) {
-                    //centerThePropertyWindow();
-                    $propertyWindow.toCenter(500);
+                for (var key in moudleWindows) {
+                    if (/block/g.test(moudleWindows[key].css("display"))) {
+                        moudleWindows[key].toCenter(500);
+                    }
                 }
-            };
+            });
 
             canvas.bind("mousedown", function (e) {
                 if (e.button === 0) {
@@ -632,7 +643,7 @@
                 if (e.button === 2) {
                     var offset = $("#cav").offset();
                     if (options.isClickNode) {
-                        if(options.isSelected && /Subprocess$/g.test(selectedObjects[0].export.type)){
+                        if (options.isSelected && /Subprocess$/g.test(selectedObjects[0].export.type)) {
                             setOptionsForNode();
                         } else {
                             setOptionsForNotProcessNode();
@@ -728,9 +739,115 @@
                 }
             }
 
+            function getWheelValue(e) {
+                e = e || event;
+                return ( e.wheelDelta ? e.wheelDelta / 120 : -( e.detail % 3 == 0 ? e.detail : e.detail / 3 ) );
+            }
+
+            function activeMouseWheel_X(e) {
+                var gap,
+                    temp,
+                    val = -getWheelValue(e),
+                    slider_w = $horizonSlider.width(),
+                    scroll_w = $horizonScroll.width(),
+                    dw = scroll_w - slider_w,
+                    x = parseFloat($horizonSlider.css("left"));
+
+                if ((x >= dw && val > 0) || (x <= 0 && val < 0)) {
+                    val = 0;
+                }
+
+                gap = val * options.scrollSensitivity;
+
+                saveTreePos_X();
+
+                if (gap + x < 0) {
+                    temp = 0
+                } else if (gap + x > dw) {
+                    temp = dw;
+                } else {
+                    temp = "+=" + gap;
+                }
+
+                $horizonSlider.css({"left":temp});
+                if (gap !== 0) {
+                    updateTheTreeView_X(x);
+                }
+            }
+
+            function activeMouseWheel_Y(e) {
+                var gap,
+                    temp,
+                    val = -getWheelValue(e),
+                    slider_h = $verticalSlider.height(),
+                    scroll_h = $verticalScroll.height(),
+                    dh = scroll_h - slider_h,
+                    y = parseFloat($verticalSlider.css("top"));
+
+                if ((y >= dh && val > 0) || (y <= 0 && val < 0)) {
+                    val = 0;
+                }
+
+                gap = val * options.scrollSensitivity;
+
+                saveTreePos_Y();
+
+                if (gap + y < 0) {
+                    temp = 0
+                } else if (gap + y > dh) {
+                    temp = dh;
+                } else {
+                    temp = "+=" + gap;
+                }
+
+                $verticalSlider.css({"top":temp});
+                if (gap !== 0) {
+                    updateTheTreeView_Y(y);
+                }
+            }
+
+            function forbidenMouseWheel(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }
+
+
             $horizonSlider.bind("mousedown", onSliderChose);
 
             $verticalSlider.bind("mousedown", onSliderChose);
+
+            $horizonScroll.hover(function () {
+                window.onmousewheel = document.onmousewheel = forbidenMouseWheel;
+                if ($.browser.msie) {
+                    this.attachEvent("mousewheel", activeMouseWheel_X);
+                } else {
+                    this.addEventListener("mousewheel", activeMouseWheel_X, false);
+                }
+            }, function () {
+                window.onmousewheel = document.onmousewheel = null;
+                if ($.browser.msie) {
+                    this.detachEvent("mousewheel", activeMouseWheel_X);
+                } else {
+                    this.removeEventListener("mousewheel", activeMouseWheel_X, false);
+                }
+            });
+
+            $verticalScroll.hover(function () {
+                window.onmousewheel = document.onmousewheel = forbidenMouseWheel;
+                if ($.browser.msie) {
+                    this.attachEvent("mousewheel", activeMouseWheel_Y);
+                } else {
+                    this.addEventListener("mousewheel", activeMouseWheel_Y, false);
+                }
+            }, function () {
+                window.onmousewheel = document.onmousewheel = null;
+                if ($.browser.msie) {
+                    this.detachEvent("mousewheel", activeMouseWheel_Y);
+                } else {
+                    this.removeEventListener("mousewheel", activeMouseWheel_Y, false);
+                }
+            });
 
             $rightOptionPanel.find("a").each(function () {
                 $(this).bind("click", function (e) {
@@ -825,7 +942,7 @@
                             }
                             break;
                         case "property":
-                            showPropertyWindow();
+                            showMoudleWindow("property");
                             break;
                     }
                     hideRightOptionPanel();
@@ -893,14 +1010,15 @@
 
             canvas.ready.loadImages(onImagesLoaded);
 
+
             $.extend({
                 bpmn:{
                     setCanvasWidth:setCanvasWidth,
                     setCanvasHeight:setCanvasHeight,
                     $majorWindow:$majorWindow,
-                    $customResizeWin:$customResizeWin,
-                    showCustomResizeWindow:showCustomResizeWindow,
                     $blackBackground:$blackBackground,
+                    showMoudleWindow:showMoudleWindow,
+                    hideMoudleWindow:hideMoudleWindow,
                     autoLayout:autoLayout,
                     saveLayout:saveLayout,
                     restoreLayout:restoreLayout,
