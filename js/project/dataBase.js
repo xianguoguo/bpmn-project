@@ -169,7 +169,7 @@
                 var width = (maxColumnCount + 1) * this.gap_x;
 
                 this.all().each(function () {
-                    this.x = (this.cols + 1 ) * width / (table[this.rows].length + 1) - 100;
+                    this.x = (this.cols + 1 ) * width / (table[this.rows].length + 1) - _this.gap_x / 2;
                     this.y = this.rows * _this.gap_y + 23;
                 });
 

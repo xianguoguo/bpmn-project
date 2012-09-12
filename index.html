@@ -99,7 +99,7 @@
                         <li>
                             <a>操作</a>
                             <ul>
-                                <li><a class="customShowTree">默认节点间隙</a></li>
+                                <li><a class="customShowTree">初始参数设定</a></li>
                                 <li><a class="saveLayout">保存当前布局</a></li>
                                 <li><a class="restoreLayout">恢复保存布局</a></li>
                                 <li><a class="autoLayout">自动布局</a></li>
@@ -199,30 +199,30 @@
             <td colspan="2"><label id="showError"></label></td>
         </tr>
     </table>
-    <div id="adjustTreeGap">
-        <table>
-            <th colspan="2">
-                自定义图节点间隙
-            </th>
-            <tr>
-                <td>水平节点间隙:</td>
-                <td><input type="range" min="100" max="250" value="200"><label id="gap_x">200</label></td>
-            </tr>
-            <tr>
-                <td>垂直节点间隙:</td>
-                <td><input type="range" min="50" max="250" value="150"><label id="gap_y">150</label></td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <canvas id="demo" width="290px" height="290px"></canvas>
-                </td>
-            </tr>
-            <tr>
-                <td><input type="button" id="saveTheGap" value="确定"></td>
-                <td><input type="button" id="cancelTheGap" value="取消"></td>
-            </tr>
-        </table>
-    </div>
+    <table id="adjustTreeGap">
+        <th colspan="2">
+            初始参数设定
+        </th>
+        <tr>
+            <td>水平间隙系数:</td>
+            <td><input type="range" min="100" max="250" value="200"><label id="gap_x">200</label></td>
+        </tr>
+        <tr>
+            <td>垂直间隙系数:</td>
+            <td><input type="range" min="80" max="250" value="150"><label id="gap_y">150</label></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <canvas id="demo" width="290px" height="290px"></canvas>
+            </td>
+        </tr>
+        <tr>
+            <td td colspan="2">
+                <input type="button" id="saveTheGap" value="确定">
+                <input type="button" id="cancelTheGap" value="取消">
+            </td>
+        </tr>
+    </table>
     <div id="contactUs">
         <p>e-mail:wuchu356@gmail.com</p>
 
