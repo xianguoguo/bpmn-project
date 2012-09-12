@@ -1,10 +1,16 @@
-(function ($, window, undefined) {
+(function ($, oCanvas, window, undefined) {
     var $canvas = $("#cav"),
         imgsBuffer = {};
 
     $(".showBackground").bind("click", function () {
         $(this).children("span").toggleText("√");
         $canvas.toggleClass("backgroundLiner");
+    });
+
+    $(".customShowTree").bind("click", function () {
+
+        $.bpmn.showMoudleWindow("treeGap");
+
     });
 
     $(".save").bind("click", function () {
@@ -156,7 +162,7 @@
         $.bpmn.showMoudleWindow("about");
     });
 
-    $(".contact").bind("click",function(){
+    $(".contact").bind("click", function () {
         $.bpmn.showMoudleWindow("contact");
     });
-})(jQuery, window, undefined);
+})(jQuery, oCanvas, window, undefined);

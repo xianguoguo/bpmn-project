@@ -13,6 +13,8 @@
         }
 
         JsonMap.prototype = {
+            gap_x:200,
+            gap_y:150,
             set max(value) {
                 if (value > max) {
                     max = ~~value;
@@ -126,7 +128,8 @@
                 var maxRowCount = 0,
                     maxColumnCount = 0,
                     table = [],
-                    node = null;
+                    node = null,
+                    _this = this;
                 (function (node) {
                     var i = 0,
                         row = 0;
@@ -163,12 +166,13 @@
 
                 //set center.
                 ///*
-                var width = (maxColumnCount + 1) * 200;
+                var width = (maxColumnCount + 1) * this.gap_x;
 
                 this.all().each(function () {
                     this.x = (this.cols + 1 ) * width / (table[this.rows].length + 1) - 100;
-                    this.y = this.rows * 150 + 23;
+                    this.y = this.rows * _this.gap_y + 23;
                 });
+
                 //*/
 
                 //aligin left

@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="378d7e5b-0915-457d-8a69-d11f792615cc" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/project/adjustTreeGap.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/global.css" afterPath="$PROJECT_DIR$/css/global.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/project/dataBase.js" afterPath="$PROJECT_DIR$/js/project/dataBase.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/project/elems.js" afterPath="$PROJECT_DIR$/js/project/elems.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/project/menu.js" afterPath="$PROJECT_DIR$/js/project/menu.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/project/userInterface.js" afterPath="$PROJECT_DIR$/js/project/userInterface.js" />
     </list>
     <ignored path="Joo-canvas-1.4.iws" />
@@ -26,19 +31,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="201" column="10" selection-start="7769" selection-end="7769" vertical-scroll-proportion="-4.6153846">
+            <state line="208" column="48" selection-start="8006" selection-end="8006" vertical-scroll-proportion="0.456942">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="userInterface.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="adjustTreeGap.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/project/adjustTreeGap.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="97" column="35" selection-start="2850" selection-end="2850" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="userInterface.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/project/userInterface.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="990" column="54" selection-start="40554" selection-end="40554" vertical-scroll-proportion="0.24398625">
+            <state line="523" column="45" selection-start="20964" selection-end="20964" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dataBase.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/project/dataBase.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="171" column="91" selection-start="5863" selection-end="5863" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -47,7 +70,7 @@
       <file leaf-file-name="customRsize.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/project/customRsize.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="48" selection-start="910" selection-end="910" vertical-scroll-proportion="0.0">
+            <state line="0" column="34" selection-start="34" selection-end="34" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -56,7 +79,7 @@
       <file leaf-file-name="animation.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/project/animation.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="183" column="35" selection-start="4918" selection-end="4918" vertical-scroll-proportion="0.0">
+            <state line="131" column="30" selection-start="3406" selection-end="3406" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -65,7 +88,7 @@
       <file leaf-file-name="elems.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/project/elems.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="223" column="29" selection-start="7689" selection-end="7689" vertical-scroll-proportion="0.0">
+            <state line="335" column="43" selection-start="11450" selection-end="11450" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -83,7 +106,7 @@
       <file leaf-file-name="global.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/global.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="351" column="0" selection-start="6321" selection-end="6321" vertical-scroll-proportion="0.0">
+            <state line="431" column="17" selection-start="7461" selection-end="7461" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -92,16 +115,7 @@
       <file leaf-file-name="menu.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/project/menu.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="159" column="43" selection-start="4712" selection-end="4712" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dimensions.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/project/dimensions.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="68" selection-start="1183" selection-end="1183" vertical-scroll-proportion="0.0">
+            <state line="11" column="40" selection-start="346" selection-end="353" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -122,18 +136,19 @@
       <list>
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/js/project/ready.js" />
-        <option value="$PROJECT_DIR$/js/project/dataBase.js" />
         <option value="$PROJECT_DIR$/js/project/inputer.js" />
         <option value="$PROJECT_DIR$/js/project/drag.js" />
         <option value="$PROJECT_DIR$/js/lib/ocanvas-2.2.1.js" />
         <option value="$PROJECT_DIR$/js/project/dimensions.js" />
         <option value="$PROJECT_DIR$/js/project/win.js" />
-        <option value="$PROJECT_DIR$/js/project/elems.js" />
         <option value="$PROJECT_DIR$/js/project/customRsize.js" />
+        <option value="$PROJECT_DIR$/js/project/elems.js" />
         <option value="$PROJECT_DIR$/js/project/menu.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/css/global.css" />
+        <option value="$PROJECT_DIR$/js/project/adjustTreeGap.js" />
         <option value="$PROJECT_DIR$/js/project/userInterface.js" />
+        <option value="$PROJECT_DIR$/js/project/dataBase.js" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -149,7 +164,7 @@
     <OptionsSetting value="true" id="Update" />
     <OptionsSetting value="true" id="Status" />
     <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="2" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectReloadState">
@@ -244,11 +259,28 @@
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="reference.settings.ide.settings.web.browsers" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JavaScript Debug.index.html">
+    <configuration default="false" name="index.html" type="JavascriptDebugSession" factoryName="Local" temporary="true">
+      <JSDebuggerConfigurationSettings>
+        <option name="engineId" value="embedded" />
+        <option name="fileUrl" value="file://$PROJECT_DIR$/index.html" />
+      </JSDebuggerConfigurationSettings>
+      <RunnerSettings RunnerId="JavascriptDebugRunner" />
+      <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="adjustTreeGap.js" type="JavascriptDebugSession" factoryName="Local" temporary="true">
+      <JSDebuggerConfigurationSettings>
+        <option name="engineId" value="embedded" />
+        <option name="fileUrl" value="file://$PROJECT_DIR$/js/project/adjustTreeGap.js" />
+      </JSDebuggerConfigurationSettings>
+      <method />
+    </configuration>
     <configuration default="true" type="JavascriptDebugSession" factoryName="Local">
       <JSDebuggerConfigurationSettings>
         <option name="engineId" value="embedded" />
@@ -256,7 +288,10 @@
       </JSDebuggerConfigurationSettings>
       <method />
     </configuration>
-    <list size="0" />
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
+      <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.adjustTreeGap.js" />
+    </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
   <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false">
@@ -292,8 +327,8 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18120806" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18120806" sideWeight="0.6006441" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3993559" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -363,16 +398,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/js/lib/ocanvas-2.2.0.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="242" selection-end="242" vertical-scroll-proportion="0.17889088" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/project/ready.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="89" column="93" selection-start="4148" selection-end="4148" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/lib/jquery-1.8.1.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6378" column="33" selection-start="243063" selection-end="243063" vertical-scroll-proportion="0.4404332" />
@@ -388,31 +413,42 @@
         <state line="211" column="48" selection-start="6342" selection-end="6342" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/project/dataBase.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="116" column="60" selection-start="3887" selection-end="3887" vertical-scroll-proportion="3.8991597" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/lib/ocanvas-2.2.1.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2107" column="73" selection-start="83608" selection-end="83608" vertical-scroll-proportion="0.69072163">
-          <folding />
-        </state>
+        <state line="2107" column="73" selection-start="83608" selection-end="83608" vertical-scroll-proportion="0.69072163" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/project/dimensions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="68" selection-start="1183" selection-end="1183" vertical-scroll-proportion="0.0" />
+        <state line="8" column="53" selection-start="358" selection-end="358" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/project/animation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="131" column="30" selection-start="3406" selection-end="3406" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/project/customRsize.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="34" selection-start="34" selection-end="34" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/project/ready.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="89" column="93" selection-start="4148" selection-end="4148" vertical-scroll-proportion="0.33613446">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/project/menu.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="159" column="43" selection-start="4712" selection-end="4712" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/global.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="351" column="0" selection-start="6321" selection-end="6321" vertical-scroll-proportion="0.0">
+        <state line="11" column="40" selection-start="346" selection-end="353" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -424,31 +460,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/project/elems.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="223" column="29" selection-start="7689" selection-end="7689" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/project/animation.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="183" column="35" selection-start="4918" selection-end="4918" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/project/customRsize.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="48" selection-start="910" selection-end="910" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="201" column="10" selection-start="7769" selection-end="7769" vertical-scroll-proportion="-4.6153846">
+        <state line="335" column="43" selection-start="11450" selection-end="11450" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/project/userInterface.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="990" column="54" selection-start="40554" selection-end="40554" vertical-scroll-proportion="0.24398625">
+        <state line="523" column="45" selection-start="20964" selection-end="20964" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/project/dataBase.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="171" column="91" selection-start="5863" selection-end="5863" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/project/adjustTreeGap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="97" column="35" selection-start="2850" selection-end="2850" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/global.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="431" column="17" selection-start="7461" selection-end="7461" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="208" column="48" selection-start="8006" selection-end="8006" vertical-scroll-proportion="0.456942">
           <folding />
         </state>
       </provider>

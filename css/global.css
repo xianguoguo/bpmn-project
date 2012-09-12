@@ -385,6 +385,15 @@ a span {
     height: 90px;
 }
 
+#customWinSize td, th {
+    border-width: 0px;
+}
+
+#customWinSize th {
+    text-align: center;
+    font-size: 16px;
+}
+
 #customWinSize td label {
     color: red;
 }
@@ -406,4 +415,28 @@ a span {
 #contactUs {
     width: 300px;
     height: 100px;
+}
+
+#adjustTreeGap {
+    border-collapse: collapse;
+    background-color: #ffffff;
+    width: 300px;
+    height: 400px;
+}
+
+#adjustTreeGap td canvas {
+    border: 1px solid #000;
+}
+
+#adjustTreeGap td input {
+    width: 120px;
+}
+
+#adjustTreeGap td, th {
+    border-width: 0px;
+}
+
+#adjustTreeGap th {
+    text-align: center;
+    font-size: 16px;
 }

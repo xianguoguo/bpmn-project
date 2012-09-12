@@ -25,6 +25,7 @@
     $(function () {
         $(document).ready(function () {
             var canvas,
+                demo,
                 options,
                 $rightOptionPanel,
                 $background,
@@ -107,6 +108,68 @@
             timer.init();
 
             canvas = oCanvas.create({canvas:"#cav"});
+
+            /*****************************************************************/
+            demo = oCanvas.create({"canvas":"#demo"});
+            var circle_start = demo.display.arc({
+                x:demo.width / 2 - canvas.dataBase.gap_x / 2,
+                y:demo.height / 2 - canvas.dataBase.gap_y / 2,
+                radius:20,
+                start:0,
+                end:360,
+                fill:"#0af",
+                opacity:0.5
+            }).add();
+
+            var circle_end = (function () {
+                this.fill = "#f00";
+                this.x = demo.width / 2 + canvas.dataBase.gap_x / 2;
+                this.y = demo.height / 2 + canvas.dataBase.gap_y / 2;
+                return this;
+            }).call(circle_start.clone()).add();
+
+            var rectStander = demo.display.rectangle({
+                x:circle_start.x,
+                y:circle_start.y,
+                width:circle_end.x - circle_start.x,
+                height:circle_end.y - circle_start.y,
+                fill:"#000",
+                opacity:0.3
+            }).add();
+
+            var countLine = demo.display.line({
+                start:circle_start,
+                end:circle_end,
+                stroke:"2px #f00",
+                cap:"round"
+            }).add();
+
+            var gapLength = demo.display.text({
+                x:demo.width / 2,
+                y:demo.height / 2,
+                origin:{ x:"left", y:"top" },
+                font:"bold 12px sans-serif",
+                text:Math.sqrt(rectStander.width * rectStander.width + rectStander.height * rectStander.width).toFixed(1) + "px",
+                fill:"#000"
+            }).add();
+            var gapWidth = demo.display.text({
+                x:demo.width / 2,
+                y:circle_end.y,
+                origin:{ x:"center", y:"top" },
+                font:"bold 12px sans-serif",
+                text:rectStander.width.toFixed(1) + "px",
+                fill:"#000"
+            }).add();
+            var gapHeight = demo.display.text({
+                x:circle_start.x,
+                y:demo.width / 2,
+                origin:{ x:"center", y:"top" },
+                font:"bold 12px sans-serif",
+                text:rectStander.height.toFixed(1) + "px",
+                fill:"#000"
+            }).add();
+            /*****************************************************************/
+
             $rightOptionPanel = $("#opt");
             $background = $(".back");
             $blackBackground = $(".blackback");
@@ -140,6 +203,8 @@
             createMoudleWindow("#showInfo", "about");
 
             createMoudleWindow("#contactUs", "contact");
+
+            createMoudleWindow("#adjustTreeGap", "treeGap");
 
             $horizonSlider = $horizonScroll
                 .children(".slider")
@@ -312,6 +377,11 @@
                 });
             }
 
+            function updateScrolls() {
+                setCanvasHeight(canvas.height);
+                setCanvasWidth(canvas.width);
+            }
+
             function addSelectedNode(obj) {
                 if (!!obj) {
                     obj.animate({
@@ -449,10 +519,11 @@
                 });
             }
 
-            function hideMoudleWindow(name) {
+            function hideMoudleWindow(name, callback) {
                 $blackBackground.fadeOut(300);
-                moudleWindows[name].fadeOut(300, function () {
+                moudleWindows[name].fadeOut(500, function () {
                     options.isFullScreen || $("body").removeClass("hidescroll");
+                    !callback || callback.call(this);
                 });
             }
 
@@ -479,7 +550,11 @@
                 return node;
             }
 
-            function autoLayout() {
+            function autoLayout(gap) {
+                if (!!gap) {
+                    canvas.dataBase.gap_x = gap.x;
+                    canvas.dataBase.gap_y = gap.y;
+                }
                 canvas
                     .dataBase
                     .all()
@@ -1022,9 +1097,23 @@
 
             $.extend({
                 bpmn:{
+                    demo:{
+                        start:circle_start,
+                        end:circle_end,
+                        width:demo.width,
+                        height:demo.height,
+                        rect:rectStander,
+                        line:countLine,
+                        gapLength:gapLength,
+                        gapWidth:gapWidth,
+                        gapHeight:gapHeight
+                    },
+                    canvas:canvas,
+                    updateScrolls:updateScrolls,
                     setCanvasWidth:setCanvasWidth,
                     setCanvasHeight:setCanvasHeight,
                     $majorWindow:$majorWindow,
+                    moudleWindows:moudleWindows,
                     $blackBackground:$blackBackground,
                     showMoudleWindow:showMoudleWindow,
                     hideMoudleWindow:hideMoudleWindow,
@@ -1034,7 +1123,6 @@
                     reload:onImagesLoaded,
                     resetCanvas:resetCanvas,
                     showLines:showLines,
-                    canvas:canvas,
                     redraw:function () {
                         canvas.redraw();
                     }

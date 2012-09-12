@@ -286,9 +286,10 @@
                     ctx.lineTo(round(points[i].x), round(points[i].y));
                 }
                 ctx.lineTo(round(points[3].x), round(points[3].y + tmp));
-                ctx.lineWidth = 1;
+                ctx.lineWidth = 2;
                 ctx.lineCap = "round";
-                ctx.fillStyle = "rgba(0,0,0,0.5)";
+                ctx.strokeStyle = "rgba(0,0,0,1)"
+                ctx.fillStyle = "rgba(0,0,0,1)";
                 ctx.stroke();
                 ctx.closePath();
                 ctx.restore();
@@ -299,7 +300,7 @@
                 ctx.moveTo(0, 0);
                 ctx.lineTo(-3, tmp);
                 ctx.lineTo(3, tmp);
-                ctx.fillStyle = "rgba(0,0,0,0.5)";
+                ctx.fillStyle = "rgba(0,0,0,1)";
                 ctx.fill();
                 ctx.closePath();
                 ctx.restore();
@@ -383,7 +384,7 @@
                 ctx.lineTo(len - 12, w);
                 ctx.lineTo(0, w);
 
-                ctx.fillStyle = "rgba(0,0,0,0.5)";
+                ctx.fillStyle = "rgba(0,0,0,1)";
                 ctx.fill();
                 //ctx.stroke();
                 ctx.closePath();

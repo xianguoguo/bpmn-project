@@ -29,7 +29,7 @@
                 <div id="opt">
                     <ul>
                         <li><a id="add">新增节点</a></li>
-                        <li><a id="layout">初始化布局</a></li>
+                        <li><a id="layout">自动布局</a></li>
                         <li><a id="redo">重做</a></li>
                         <li><a id="undo">撤销</a></li>
                         <li><a id="link">连接</a></li>
@@ -99,9 +99,10 @@
                         <li>
                             <a>操作</a>
                             <ul>
+                                <li><a class="customShowTree">默认节点间隙</a></li>
                                 <li><a class="saveLayout">保存当前布局</a></li>
                                 <li><a class="restoreLayout">恢复保存布局</a></li>
-                                <li><a class="autoLayout">初始化布局</a></li>
+                                <li><a class="autoLayout">自动布局</a></li>
                                 <li><a class="undo">撤销</a></li>
                                 <li><a class="redo">重做</a></li>
                             </ul>
@@ -180,6 +181,9 @@
     </table>
     <table id="customWinSize">
         <tr>
+            <th colspan="2">自定义窗口大小</th>
+        </tr>
+        <tr>
             <td>宽度:</td>
             <td><input id="setWinWidth" type="text">px</td>
         </tr>
@@ -195,9 +199,35 @@
             <td colspan="2"><label id="showError"></label></td>
         </tr>
     </table>
+    <div id="adjustTreeGap">
+        <table>
+            <th colspan="2">
+                自定义图节点间隙
+            </th>
+            <tr>
+                <td>水平节点间隙:</td>
+                <td><input type="range" min="100" max="250" value="200"><label id="gap_x">200</label></td>
+            </tr>
+            <tr>
+                <td>垂直节点间隙:</td>
+                <td><input type="range" min="50" max="250" value="150"><label id="gap_y">150</label></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <canvas id="demo" width="290px" height="290px"></canvas>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="button" id="saveTheGap" value="确定"></td>
+                <td><input type="button" id="cancelTheGap" value="取消"></td>
+            </tr>
+        </table>
+    </div>
     <div id="contactUs">
         <p>e-mail:wuchu356@gmail.com</p>
+
         <p>有时间就联系.</p>
+
         <p>没时间就算了.</p>
     </div>
     <div id="showInfo"><h2>About the project.</h2>
@@ -220,6 +250,7 @@
 <script src="js/project/ready.js"></script>
 
 <script src="js/project/userInterface.js"></script>
+<script src="js/project/adjustTreeGap.js"></script>
 <script src="js/project/menu.js"></script>
 <script src="js/project/customRsize.js"></script>
 
