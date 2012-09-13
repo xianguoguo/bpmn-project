@@ -28,6 +28,7 @@
                 </div>
                 <div id="opt">
                     <ul>
+                        <li><a id="show">显示隐藏节点</a></li>
                         <li><a id="add">新增节点</a></li>
                         <li><a id="layout">自动布局</a></li>
                         <li><a id="redo">重做</a></li>
@@ -236,7 +237,19 @@
 
         <p>on github.</p>
 
-        <p>by WuChu、Bb、Pp.</p></div>
+        <p>by WuChu、Bb、Pp.</p>
+    </div>
+    <div id="listOfHiddenNodes">
+        <table class="list">
+            <tr>
+                <th>隐藏的可选节点列表</th>
+            </tr>
+        </table>
+        <div>
+            <input id="showList" type="button" value="显示">
+            <input id="cancelShow" type="button" value="取消">
+        </div>
+    </div>
 </div>
 
 <script src="js/project/animation.js"></script>
@@ -252,7 +265,8 @@
 <script src="js/project/userInterface.js"></script>
 <script src="js/project/adjustTreeGap.js"></script>
 <script src="js/project/menu.js"></script>
-<script src="js/project/customRsize.js"></script>
+<script src="js/project/customResize.js"></script>
+<script src="js/project/listOfHiddenNodes.js"></script>
 
 </body>
 </html>

@@ -38,7 +38,7 @@
                 moudleWindows = {},
                 specialNodeOptions = "link insert replace rename remove property",
                 specialNotProcessOptions = "link remove",
-                specialStageOptions = "fullscreen add layout redo undo",
+                specialStageOptions = "show fullscreen add layout redo undo",
                 linker = null,
                 linkers = {},
                 timer = new Timer();
@@ -206,6 +206,13 @@
 
             createMoudleWindow("#adjustTreeGap", "treeGap");
 
+            createMoudleWindow("#listOfHiddenNodes", "list").resize(function (w, h) {
+                $("#listOfHiddenNodes").css({
+                    "height":h,
+                    "width":w
+                });
+            });
+
             $horizonSlider = $horizonScroll
                 .children(".slider")
                 .drag(null, {
@@ -339,6 +346,38 @@
                     this.export.y = this.export.sy - (sliderY - sy) * k;
                 });
                 canvas.redraw();
+            }
+
+            function newRow(key, text) {
+                var $p = $("<p></p>").text(text),
+                    $tr = $("<tr></tr>"),
+                    $td = $("<td></td>"),
+                    $span = $("<span></span>"),
+                    $checkbox = $("<input/>").attr({"type":"checkbox"}).val(key);
+
+                $span.append($checkbox);
+                $p.append($span);
+                $td.append($p);
+
+                return $tr.append($td);
+            }
+
+            function clearTable(domId) {
+                $(domId).find("tr").each(function (i) {
+                    if (i > 0) {
+                        $(this).remove();
+                    }
+                });
+            }
+
+            function createNodeList(domId, arrList) {
+                var list = arrList;
+                clearTable(domId);
+                for (var i = 0; i < list.length; i++) {
+                    canvas.dataBase.find(list[i]).each(function () {
+                        $(domId).find(".list").append(newRow(this.key, this.text || "no name node!"));
+                    });
+                }
             }
 
             function setCanvasWidth(w, force) {
@@ -937,6 +976,10 @@
                 $(this).bind("click", function (e) {
                     var i;
                     switch ($(this).attr("id")) {
+                        case "show":
+                            createNodeList("#listOfHiddenNodes", [19, 20, 21, 22]);
+                            showMoudleWindow("list");
+                            break;
                         case "link":
                             if (options.isSelected && !options.isGrouped) {
                                 options.status = "linking";

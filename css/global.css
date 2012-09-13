@@ -428,7 +428,7 @@ a span {
     border: 1px solid #00aaff;
 }
 
-#adjustTreeGap td input{
+#adjustTreeGap td input {
     width: 140px;
 }
 
@@ -439,4 +439,26 @@ a span {
 #adjustTreeGap th {
     text-align: center;
     font-size: 16px;
+}
+
+#listOfHiddenNodes {
+    width: 300px;
+    height: 400px;
+    overflow: scroll;
+}
+
+#listOfHiddenNodes p span {
+    float: right;
+}
+
+#listOfHiddenNodes p {
+    border-bottom: 1px solid #00aaff;
+}
+
+#listOfHiddenNodes .list {
+    width: 100%;
+}
+
+#listOfHiddenNodes .list th {
+    border-bottom: 1px dotted #000;
 }
