@@ -374,9 +374,7 @@
                 var list = arrList;
                 clearTable(domId);
                 for (var i = 0; i < list.length; i++) {
-                    canvas.dataBase.find(list[i]).each(function () {
-                        $(domId).find(".list").append(newRow(this.key, this.text || "no name node!"));
-                    });
+                    $(domId).find(".list").append(newRow(list[i].id, list[i].text || "error!"));
                 }
             }
 
@@ -977,7 +975,9 @@
                     var i;
                     switch ($(this).attr("id")) {
                         case "show":
-                            createNodeList("#listOfHiddenNodes", [19, 20, 21, 22]);
+                            createNodeList("#listOfHiddenNodes", [
+                                {"id":6, "text":"hello!"}
+                            ]);
                             showMoudleWindow("list");
                             break;
                         case "link":

@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="378d7e5b-0915-457d-8a69-d11f792615cc" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/project/listOfHiddenNodes.js" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/js/project/customRsize.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/global.css" afterPath="$PROJECT_DIR$/css/global.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/project/userInterface.js" afterPath="$PROJECT_DIR$/js/project/userInterface.js" />
     </list>
     <ignored path="Joo-canvas-1.4.iws" />
@@ -29,10 +25,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="269" column="0" selection-start="9899" selection-end="9899" vertical-scroll-proportion="0.74820143">
+            <state line="258" column="41" selection-start="9507" selection-end="9507" vertical-scroll-proportion="-7.5384617">
               <folding />
             </state>
           </provider>
@@ -56,10 +52,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="userInterface.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="userInterface.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/project/userInterface.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="370" column="13" selection-start="15302" selection-end="15302" vertical-scroll-proportion="0.0">
+            <state line="978" column="56" selection-start="38554" selection-end="38554" vertical-scroll-proportion="0.73195875">
               <folding />
             </state>
           </provider>
@@ -145,9 +141,9 @@
         <option value="$PROJECT_DIR$/js/project/adjustTreeGap.js" />
         <option value="$PROJECT_DIR$/js/project/dataBase.js" />
         <option value="$PROJECT_DIR$/css/global.css" />
-        <option value="$PROJECT_DIR$/js/project/userInterface.js" />
         <option value="$PROJECT_DIR$/js/project/listOfHiddenNodes.js" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/js/project/userInterface.js" />
       </list>
     </option>
   </component>
@@ -440,13 +436,6 @@
         <state line="335" column="43" selection-start="11450" selection-end="11450" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/project/animation.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="23" selection-start="504" selection-end="504" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/project/dataBase.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="176" column="0" selection-start="5978" selection-end="5978" vertical-scroll-proportion="0.0" />
@@ -457,13 +446,6 @@
         <state line="97" column="35" selection-start="2850" selection-end="2850" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/project/userInterface.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="370" column="13" selection-start="15302" selection-end="15302" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/project/listOfHiddenNodes.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="7" selection-start="188" selection-end="188" vertical-scroll-proportion="0.0">
@@ -471,9 +453,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/project/animation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="23" selection-start="504" selection-end="504" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="269" column="0" selection-start="9899" selection-end="9899" vertical-scroll-proportion="0.74820143">
+        <state line="258" column="41" selection-start="9507" selection-end="9507" vertical-scroll-proportion="-7.5384617">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/project/userInterface.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="978" column="56" selection-start="38554" selection-end="38554" vertical-scroll-proportion="0.73195875">
           <folding />
         </state>
       </provider>
