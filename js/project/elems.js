@@ -25,7 +25,7 @@
                     end:onDragEnd,
                     changeZindex:true
                 });
-                this.add();
+                //this.add();
             },
             draw:function () {
                 this.radius = 16;
@@ -129,7 +129,7 @@
                     end:onDragEnd,
                     changeZindex:true
                 });
-                this.add();
+                //this.add();
             },
             draw:function () {
                 var ctx = core.canvas,
@@ -162,7 +162,7 @@
                     end:onDragEnd,
                     changeZindex:true
                 });
-                this.add();
+                //this.add();
             },
             draw:function () {
                 var ctx = core.canvas,
@@ -197,7 +197,7 @@
                     end:onDragEnd,
                     changeZindex:true
                 });
-                this.add();
+                //this.add();
             },
             draw:function () {
                 var ctx = core.canvas,
@@ -288,8 +288,7 @@
                 ctx.lineTo(round(points[3].x), round(points[3].y + tmp));
                 ctx.lineWidth = 2;
                 ctx.lineCap = "round";
-                ctx.strokeStyle = "rgba(0,0,0,1)"
-                ctx.fillStyle = "rgba(0,0,0,1)";
+                ctx.strokeStyle = this.fill;
                 ctx.stroke();
                 ctx.closePath();
                 ctx.restore();
@@ -300,10 +299,12 @@
                 ctx.moveTo(0, 0);
                 ctx.lineTo(-3, tmp);
                 ctx.lineTo(3, tmp);
-                ctx.fillStyle = "rgba(0,0,0,1)";
+                ctx.fillStyle = this.fill;
                 ctx.fill();
                 ctx.closePath();
                 ctx.restore();
+
+                this.points = points;
             }
         }, settings);
     }
@@ -384,7 +385,7 @@
                 ctx.lineTo(len - 12, w);
                 ctx.lineTo(0, w);
 
-                ctx.fillStyle = "rgba(0,0,0,1)";
+                ctx.fillStyle = this.fill;
                 ctx.fill();
                 //ctx.stroke();
                 ctx.closePath();

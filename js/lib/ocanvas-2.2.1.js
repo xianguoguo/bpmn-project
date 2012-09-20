@@ -1372,11 +1372,56 @@
                 } else
 
                 // Rectangle
-                if (obj.shapeType === "rectangular") {
+                if (obj.shapeType === "rectangular" && obj.type !== "linkLine" && obj.type !== "directLine") {
                     var pointer = this.transformPointerPosition(obj, obj.abs_x, obj.abs_y, 0, pointerObject),
                         stroke = (obj.strokePosition === "outside") ? obj.strokeWidth : ((obj.strokePosition === "center") ? obj.strokeWidth / 2 : 0);
 
                     return ((pointer.x > obj.abs_x - origin.x - stroke) && (pointer.x < obj.abs_x + obj.width - origin.x + stroke) && (pointer.y > obj.abs_y - origin.y - stroke) && (pointer.y < obj.abs_y + obj.height - origin.y + stroke));
+                } else
+
+                //modified and added by wuchu.
+                //linkLine
+                if (obj.type === "linkLine") {
+                    var pointer = this.transformPointerPosition(obj, obj.abs_x, obj.abs_y, 0, pointerObject),
+                        p = obj.points,
+                        x = pointer.x,
+                        y = pointer.y,
+                        off = 8,
+                        inFirstPath = false,
+                        inSecondPath = false,
+                        inThirdPath = false;
+
+                    function between(com, a, b) {
+                        var max = Math.max(a, b),
+                            min = Math.min(a, b);
+                        return com > min && com < max;
+                    }
+
+                    function offseter(com, val, off) {
+                        return com > val - off && com < val + off;
+                    }
+
+                    inFirstPath =  between(y, p[0].y, p[1].y) && offseter(x, p[0].x, off);
+                    inSecondPath = between(x, p[1].x, p[2].x) && offseter(y, p[1].y, off);
+                    inThirdPath =  between(y, p[2].y, p[3].y) && offseter(x, p[3].x, off);
+
+                    return inFirstPath || inSecondPath || inThirdPath;
+                } else
+
+                //DirectLine
+                if (obj.type === "directLine") {
+                    var pointer = this.transformPointerPosition(obj, obj.abs_x, obj.abs_y, 0, pointerObject),
+                        s = obj.start,
+                        e = obj.end,
+                        off = 0.5;
+
+                    function dist(a, b) {
+                        var dx = a.x - b.x,
+                            dy = a.y - b.y;
+                        return Math.sqrt(dx * dx + dy * dy);
+                    }
+
+                    return dist(s, e) + off > dist(pointer, s) + dist(pointer, e);
                 } else
 
                 // Circle

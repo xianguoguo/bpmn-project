@@ -38,6 +38,7 @@
                 moudleWindows = {},
                 specialNodeOptions = "link insert replace rename remove property",
                 specialNotProcessOptions = "link remove",
+                speciallinkerOptions = "removeLinker",
                 specialStageOptions = "show fullscreen add layout redo undo",
                 linker = null,
                 linkers = {},
@@ -481,6 +482,32 @@
                     start:start,
                     end:end
                 });
+                linker.bind("mousedown", function (e) {
+                    if (e.button === 0) {
+                        if (selectedObjects.lastIndexOf(this) === -1) {
+                            //selectedObjects.push(this);
+                            addSelectedNode(this);
+                        }
+                        options.isClickNode = true;
+                    }
+                    if (e.button === 2) {
+                        if (selectedObjects.lastIndexOf(this) === -1) {
+                            while (selectedObjects.length > 0) {
+                                popSelectedNode();
+                            }
+                            addSelectedNode(this);
+                        }
+                        options.isClickNode = true;
+                    }
+                });
+                linker.bind("mouseenter", function () {
+                    this.fill = "rgba(0,255,0,1)";
+                    this.redraw();
+                });
+                linker.bind("mouseleave", function () {
+                    this.fill = "rgba(0,0,0,1)";
+                    this.redraw();
+                });
                 return linker;
             }
 
@@ -534,6 +561,40 @@
                                 $(this).css({"display":"block"});
                             }
                         }
+                    });
+            }
+
+            function setOptionsForLinker() {
+                $rightOptionPanel
+                    .children("ul")
+                    .children("li")
+                    .children("a")
+                    .each(function () {
+                        var spec = speciallinkerOptions.split(" ");
+                        $(this).css({"display":"none"});
+                        for (var i = 0; i < spec.length; i++) {
+                            if ($(this).attr("id") === spec[i]) {
+                                $(this).css({"display":"block"});
+                            }
+                        }
+                    });
+            }
+
+            function setSpecialOptions(options) {
+                $rightOptionPanel.stop()
+                    .fadeOut(100, function () {
+                        $(this).children("ul")
+                            .children("li")
+                            .children("a")
+                            .each(function () {
+                                var spec = options.split(" ");
+                                $(this).css({"display":"none"});
+                                for (var i = 0; i < spec.length; i++) {
+                                    if ($(this).attr("id") === spec[i]) {
+                                        $(this).css({"display":"block"});
+                                    }
+                                }
+                            });
                     });
             }
 
@@ -755,13 +816,17 @@
                 if (e.button === 2) {
                     var offset = $("#cav").offset();
                     if (options.isClickNode) {
-                        if (options.isSelected && /Subprocess$/g.test(selectedObjects[0].export.type)) {
-                            setOptionsForNode();
+                        if (selectedObjects[0].export) {
+                            if (options.isSelected && /Subprocess$/g.test(selectedObjects[0].export.type)) {
+                                setSpecialOptions(specialNodeOptions);
+                            } else {
+                                setSpecialOptions(specialNotProcessOptions);
+                            }
                         } else {
-                            setOptionsForNotProcessNode();
+                            setSpecialOptions(speciallinkerOptions);
                         }
                     } else {
-                        setOptionsForStage();
+                        setSpecialOptions(specialStageOptions);
                     }
                     if (options.isFullScreen) {
                         showRightOptionPanel(e.x + 1, e.y + 1);
@@ -1097,6 +1162,12 @@
                 }
             }
 
+            function showNodes() {
+                canvas.dataBase.all().each(function () {
+                    this.export.add();
+                });
+            }
+
             function onImagesLoaded() {
                 linkers = {};
                 canvas.dataBase.json = data;
@@ -1130,6 +1201,7 @@
 
                 //获取文档默认的连接线的type值，显示对应的连接线。
                 showLines();
+                showNodes();
 
                 setCanvasHeight(parseInt(canvas.height, 10));
                 setCanvasWidth(parseInt(canvas.width, 10));
