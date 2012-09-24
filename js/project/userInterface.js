@@ -39,7 +39,7 @@
                 specialNodeOptions = "link insert replace rename remove property",
                 specialNotProcessOptions = "link remove",
                 speciallinkerOptions = "removeLinker",
-                specialStageOptions = "show fullscreen add layout redo undo",
+                specialStageOptions = "show fullscreen add refresh layout redo undo",
                 linker = null,
                 linkers = {},
                 timer = new Timer();
@@ -379,8 +379,33 @@
                 }
             }
 
+            function setVerticalScrollPos(w, force) {
+                if (w === undefined) {
+                    w = canvas.width;
+                    force = false;
+                }
+                $verticalScroll.css({
+                    "left":!options.isFullScreen || force ? (w - 13 + $("#cav").parent("div").offset().left) : w - 9
+                });
+            }
+
+            function setHorizonScrollPos(h, force) {
+                if (h === undefined) {
+                    h = canvas.height;
+                    force = false;
+                }
+                $horizonScroll.css({
+                    "top":!options.isFullScreen || force ? h - 13 + $("#cav").parent("div").offset().top : h + 44
+                });
+            }
+
             function setCanvasWidth(w, force) {
-                canvas.width = w;
+                if(w){
+                    canvas.width = w;
+                } else {
+                    w = canvas.width;
+                }
+
                 var k = w / options.mapWidth;
                 var theSliderWidth = w * k;
                 $horizonScroll
@@ -392,13 +417,16 @@
                     });
                 $horizonSlider.setHorizon(0, w - theSliderWidth);
 
-                $verticalScroll.css({
-                    "left":!options.isFullScreen || force ? (w - 13 + $("#cav").parent("div").offset().left) : w - 9
-                });
+                setVerticalScrollPos(w, force);
             }
 
             function setCanvasHeight(h, force) {
-                canvas.height = h;
+                if(h){
+                    canvas.height = h;
+                } else {
+                    h = canvas.height;
+                }
+
                 var k = h / options.mapHeight;
                 var theSliderHeight = h * k;
                 $verticalScroll
@@ -410,9 +438,7 @@
                     });
                 $verticalSlider.setVertical(0, h - theSliderHeight);
 
-                $horizonScroll.css({
-                    "top":!options.isFullScreen || force ? h - 13 + $("#cav").parent("div").offset().top : h + 44
-                });
+                setHorizonScrollPos(h, force);
             }
 
             function updateScrolls() {
@@ -514,70 +540,6 @@
             function endLink() {
                 linker = null;
                 options.status = "default";
-            }
-
-            function setOptionsForNode() {
-                $rightOptionPanel
-                    .children("ul")
-                    .children("li")
-                    .children("a")
-                    .each(function () {
-                        var spec = specialNodeOptions.split(" ");
-                        $(this).css({"display":"none"});
-                        for (var i = 0; i < spec.length; i++) {
-                            if ($(this).attr("id") === spec[i]) {
-                                $(this).css({"display":"block"});
-                            }
-                        }
-                    });
-            }
-
-            function setOptionsForStage() {
-                $rightOptionPanel
-                    .children("ul")
-                    .children("li")
-                    .children("a")
-                    .each(function () {
-                        var spec = specialStageOptions.split(" ");
-                        $(this).css({"display":"none"});
-                        for (var i = 0; i < spec.length; i++) {
-                            if ($(this).attr("id") === spec[i]) {
-                                $(this).css({"display":"block"});
-                            }
-                        }
-                    });
-            }
-
-            function setOptionsForNotProcessNode() {
-                $rightOptionPanel
-                    .children("ul")
-                    .children("li")
-                    .children("a")
-                    .each(function () {
-                        var spec = specialNotProcessOptions.split(" ");
-                        $(this).css({"display":"none"});
-                        for (var i = 0; i < spec.length; i++) {
-                            if ($(this).attr("id") === spec[i]) {
-                                $(this).css({"display":"block"});
-                            }
-                        }
-                    });
-            }
-
-            function setOptionsForLinker() {
-                $rightOptionPanel
-                    .children("ul")
-                    .children("li")
-                    .children("a")
-                    .each(function () {
-                        var spec = speciallinkerOptions.split(" ");
-                        $(this).css({"display":"none"});
-                        for (var i = 0; i < spec.length; i++) {
-                            if ($(this).attr("id") === spec[i]) {
-                                $(this).css({"display":"block"});
-                            }
-                        }
-                    });
             }
 
             function setSpecialOptions(options) {
@@ -794,6 +756,8 @@
                         moudleWindows[key].toCenter(500);
                     }
                 }
+                setHorizonScrollPos();
+                setVerticalScrollPos();
             });
 
             canvas.bind("mousedown", function (e) {
@@ -817,7 +781,7 @@
                     var offset = $("#cav").offset();
                     if (options.isClickNode) {
                         if (selectedObjects[0].export) {
-                            if (options.isSelected && /Subprocess$/g.test(selectedObjects[0].export.type)) {
+                            if (options.isSelected && /Subprocess$/i.test(selectedObjects[0].type)) {
                                 setSpecialOptions(specialNodeOptions);
                             } else {
                                 setSpecialOptions(specialNotProcessOptions);
@@ -844,7 +808,13 @@
                     }
                     switch (options.status) {
                         case "linking":
-                            if (options.isGrouped && !!linker && selectedObjects[0].export.next.indexOf(selectedObjects[1].export.key) === -1) {
+                            if (options.isGrouped && !!linker
+                                && selectedObjects[0].export
+                                && selectedObjects[1].export
+                                && selectedObjects[0].export.isNode === true
+                                && selectedObjects[1].export.isNode === true
+                                && selectedObjects[0].export.next.indexOf(selectedObjects[1].export.key) === -1) {
+
                                 linker.end = selectedObjects[1];
                                 linker.start.export.next.push(linker.end.export.key);
                                 linker.end.export.prev.push(linker.start.export.key);
@@ -1045,6 +1015,34 @@
                             ]);
                             showMoudleWindow("list");
                             break;
+                        case "event":
+                            var node = createNode("eventSubprocess", {
+                                x:80,
+                                y:50
+                            });
+                            node.text.text = "未定义子流程";
+                            node.pre_render();
+                            node.add();
+                            canvas.dataBase.add({
+                                "text":node.text.text,
+                                "export":node,
+                                "type":node.type
+                            });
+                            break;
+                        case "transaction":
+                            var node = createNode("transactionSubprocess", {
+                                x:80,
+                                y:50
+                            });
+                            node.text.text = "未定义子流程";
+                            node.pre_render();
+                            node.add();
+                            canvas.dataBase.add({
+                                "text":node.text.text,
+                                "export":node,
+                                "type":node.type
+                            });
+                            break;
                         case "link":
                             if (options.isSelected && !options.isGrouped) {
                                 options.status = "linking";
@@ -1054,7 +1052,25 @@
                                 }, options.lineType).add();
                             }
                             break;
+                        case "removeLinker":
+                            if (options.isSelected) {
+                                var lin = selectedObjects[0];
+                                var s = lin.start.export;
+                                var e = lin.end.export;
+                                var name = "_" + s.key + "_" + e.key + "_";
+
+                                s.next.splice(s.next.indexOf(e.key),1);
+                                e.prev.splice(e.prev.indexOf(s.key),1);
+
+                                for(var key in linkers[name]){
+                                    linkers[name][key].remove();
+                                }
+
+                                delete linkers[name];
+                            }
+                            break;
                         case "remove":
+                            ///*
                             if (options.isSelected) {
                                 for (i = 0; i < selectedObjects.length; i++) {
                                     var obj = selectedObjects[i];
@@ -1064,12 +1080,22 @@
                                         .parents()
                                         .each(function () {
                                             var theKey = "_" + this.key + "_" + obj.export.key + "_";
-                                            linkers[theKey].remove();
+                                            for (var key in linkers[theKey]) {
+                                                try {
+                                                    linkers[theKey][key].remove();
+                                                } catch (e) {
+                                                }
+                                            }
                                             delete linkers[theKey];
                                         }).find(obj.export.key).children()
                                         .each(function () {
                                             var theKey = "_" + obj.export.key + "_" + this.key + "_";
-                                            linkers[theKey].remove();
+                                            for (var key in linkers[theKey]) {
+                                                try {
+                                                    linkers[theKey][key].remove();
+                                                } catch (e) {
+                                                }
+                                            }
                                             delete linkers[theKey];
                                         }).find(obj.export.key).remove();
                                     obj.remove();
@@ -1077,6 +1103,7 @@
                                     popSelectedNode();
                                 }
                             }
+                            //*/
                             break;
                         case "layout":
                             autoLayout();
@@ -1084,7 +1111,7 @@
                         case "rename":
                             if (options.isSelected && !options.isGrouped) {
                                 var obj = selectedObjects[0];
-                                if (!!obj.export.type.match(/Subprocess$/g)) {
+                                if (!!obj.type.match(/Subprocess$/i)) {
                                     var offset,
                                         width = Math.max(obj.text.width, 50),
                                         height = obj.text.height,
@@ -1122,6 +1149,10 @@
                                     $.inputer.show();
                                 }
                             }
+                            break;
+                        case "refresh":
+                            setCanvasHeight();
+                            setCanvasWidth();
                             break;
                         case "fullscreen":
                             if (!options.isFullScreen) {

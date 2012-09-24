@@ -130,6 +130,12 @@
                     table = [],
                     node = null,
                     _this = this;
+
+                this.each(function(){
+                    this.rows = 0;
+                    this.cols = 0;
+                });
+
                 (function (node) {
                     var i = 0,
                         row = 0;
@@ -154,11 +160,15 @@
                 });
 
                 for (var r = 0; r < table.length; r++) {
-                    for (var c = 0; c < table[r].length; c++) {
-                        node = table[r][c];
-                        node.cols = c;
+                    try {
+                        for (var c = 0; c < table[r].length; c++) {
+                            node = table[r][c];
+                            node.cols = c;
 
-                        maxColumnCount = Math.max(maxColumnCount, c);
+                            maxColumnCount = Math.max(maxColumnCount, c);
+                        }
+                    } catch (e) {
+
                     }
                 }
 
