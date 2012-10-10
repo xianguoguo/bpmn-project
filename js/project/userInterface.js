@@ -400,7 +400,7 @@
             }
 
             function setCanvasWidth(w, force) {
-                if(w){
+                if (w) {
                     canvas.width = w;
                 } else {
                     w = canvas.width;
@@ -421,7 +421,7 @@
             }
 
             function setCanvasHeight(h, force) {
-                if(h){
+                if (h) {
                     canvas.height = h;
                 } else {
                     h = canvas.height;
@@ -1059,10 +1059,10 @@
                                 var e = lin.end.export;
                                 var name = "_" + s.key + "_" + e.key + "_";
 
-                                s.next.splice(s.next.indexOf(e.key),1);
-                                e.prev.splice(e.prev.indexOf(s.key),1);
+                                s.next.splice(s.next.indexOf(e.key), 1);
+                                e.prev.splice(e.prev.indexOf(s.key), 1);
 
-                                for(var key in linkers[name]){
+                                for (var key in linkers[name]) {
                                     linkers[name][key].remove();
                                 }
 
@@ -1199,6 +1199,44 @@
                 });
             }
 
+            //获取整个图的孤立节点
+            //数组形式返回
+            //默认是会返回包括该AOE网中的开始与结束节点的，请自行排除开始与结束节点的ID值
+            function getIsolatedNodes() {
+                var nodes = [];
+                canvas.dataBase.all().each(function () {
+                    if (!this.prev || !this.next || this.prev.length <= 0 || this.next.length <= 0) {
+                        nodes.push(this.key);
+                    }
+                });
+                return nodes;
+            }
+
+            //判断某个node的ID（key）所对应的节点是否存在且为孤立节点
+
+            //返还结果分类为：
+            //1.true表示是孤立节点
+            //2.false表示是不是孤立节点
+            //3.-1表示所传入的ID（key）所对应的节点不存在
+
+            //注意：默认情况会认为开始与结束节点也为孤立节点
+            //请自行辨别开始与结束节点
+            function isIsolatedNode(/*ID*/key) {
+                var isIso = false;
+                try {
+                    canvas.dataBase.find(key).each(function () {
+                        if ((this.prev && this.prev.length > 0) && (this.prev && this.next.length > 0)) {
+                            isIso = false;
+                        } else {
+                            isIso = true;
+                        }
+                    });
+                } catch (e) {
+                    isIso = -1;
+                }
+                return isIso;
+            }
+
             function onImagesLoaded() {
                 linkers = {};
                 canvas.dataBase.json = data;
@@ -1239,7 +1277,6 @@
             }
 
             canvas.ready.loadImages(onImagesLoaded);
-
 
             $.extend({
                 bpmn:{

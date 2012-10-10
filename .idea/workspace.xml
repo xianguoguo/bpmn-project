@@ -4,9 +4,6 @@
     <list default="true" id="378d7e5b-0915-457d-8a69-d11f792615cc" name="Default" comment="">
       <change type="DELETED" beforePath="$PROJECT_DIR$/js/project/customRsize.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/global.css" afterPath="$PROJECT_DIR$/css/global.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/project/dataBase.js" afterPath="$PROJECT_DIR$/js/project/dataBase.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/project/userInterface.js" afterPath="$PROJECT_DIR$/js/project/userInterface.js" />
     </list>
     <ignored path="Joo-canvas-1.4.iws" />
@@ -29,10 +26,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="42" selection-start="2636" selection-end="2643" vertical-scroll-proportion="0.64748204">
+            <state line="174" column="37" selection-start="7277" selection-end="7277" vertical-scroll-proportion="9.230769">
               <folding />
             </state>
           </provider>
@@ -47,10 +44,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="userInterface.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="userInterface.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/project/userInterface.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1279" column="39" selection-start="52083" selection-end="52083" vertical-scroll-proportion="0.0">
+            <state line="1228" column="39" selection-start="49985" selection-end="49985" vertical-scroll-proportion="0.58419245">
               <folding />
             </state>
           </provider>
@@ -68,7 +65,7 @@
       <file leaf-file-name="elems.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/project/elems.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="424" column="27" selection-start="14445" selection-end="14460" vertical-scroll-proportion="0.0">
+            <state line="451" column="44" selection-start="16144" selection-end="16144" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -77,7 +74,7 @@
       <file leaf-file-name="global.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/global.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="1" selection-start="127" selection-end="127" vertical-scroll-proportion="0.0">
+            <state line="26" column="15" selection-start="454" selection-end="454" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -187,6 +184,10 @@
               <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -199,60 +200,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Joo-canvas-1.4" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Joo-canvas-1.4" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="img" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Joo-canvas-1.4" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Joo-canvas-1.4" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="img" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="subprocess" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Joo-canvas-1.4" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Joo-canvas-1.4" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="img" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="event" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -463,37 +410,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/lib/ocanvas-2.2.1.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1416" column="0" selection-start="52989" selection-end="52989" vertical-scroll-proportion="48.31615">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/project/elems.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="424" column="27" selection-start="14445" selection-end="14460" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/global.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="1" selection-start="127" selection-end="127" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/project/dataBase.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="135" column="34" selection-start="4523" selection-end="4523" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/project/userInterface.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1279" column="39" selection-start="52083" selection-end="52083" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="1416" column="0" selection-start="52989" selection-end="52989" vertical-scroll-proportion="48.31615" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/project/listOfHiddenNodes.js">
@@ -501,9 +418,31 @@
         <state line="6" column="7" selection-start="188" selection-end="188" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/project/dataBase.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="135" column="34" selection-start="4523" selection-end="4523" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/project/elems.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="451" column="44" selection-start="16144" selection-end="16144" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/global.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="15" selection-start="454" selection-end="454" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="42" selection-start="2636" selection-end="2643" vertical-scroll-proportion="0.64748204">
+        <state line="174" column="37" selection-start="7277" selection-end="7277" vertical-scroll-proportion="9.230769">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/project/userInterface.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1228" column="39" selection-start="49985" selection-end="49985" vertical-scroll-proportion="0.58419245">
           <folding />
         </state>
       </provider>
